@@ -44,25 +44,30 @@ public class userdao extends registerInfo{
 
 	}
 
-	public void updateRegister(int id, int socket, boolean connState)
+	public void updateRegister(int id, int socket, boolean connState) throws SQLException
 	{
 		//hem database hem deregisterInfos'daki linkedlist'leri update et.
 		int index = getIdList().indexOf(id);
 		getSocketList().set(index, socket);
 		getConnStateList().set(index, connState);
+		Statement stmt;
+		stmt = conn.createStatement();
 		String sql = "update clientinfo set socket="+socket+", connInfo="+connState+" where id="+id;
-
-		//database'e yaz.
+		stmt.executeUpdate(sql);
 	}
 
-	public void makeAllRegistersPassive()
+	public void makeAllRegistersPassive() throws SQLException
 	{
 		int size = getIdList().size();
 
 		for(int i=0; i<size; i++)
 		{
 			getConnStateList().set(i, false);
-			//database'e yaz.
 		}
+
+		Statement stmt;
+		stmt = conn.createStatement();
+		String sql = "update clientinfo set connInfo=false";
+		stmt.executeUpdate(sql);
 	}
 }
