@@ -30,13 +30,20 @@ public class userdao extends registerInfo{
 		int count=0;
 		Statement stmt;
 		stmt = conn.createStatement();
-		String sql = "select id, usrname, connInfo from clientinfo";
+		String sql = "select id, usrname, connInfo, socket from clientinfo";
 		System.out.println(sql);
 		ResultSet rs = stmt.executeQuery(sql);
 		System.out.println(sql);
+                
+                getIdList().clear();
+                getUsrList().clear();
+                getConnStateList().clear();
+                getSocketList().clear();
+                
 		while(rs.next())
 		{
 			getIdList().set(count, rs.getInt("id"));
+			getSocketList().set(count, rs.getInt("socket"));
 			getUsrList().set(count, rs.getString("usrname"));
 			getConnStateList().set(count, rs.getBoolean("connInfo"));
 			count++;
@@ -56,6 +63,15 @@ public class userdao extends registerInfo{
 		stmt.executeUpdate(sql);
 	}
 
+        public void insertRegister(int id, String name, String password) throws SQLException
+	{
+		//hem database hem deregisterInfos'daki linkedlist'leri update et.
+		Statement stmt;
+		stmt = conn.createStatement();
+		String sql = "insert into clientinfo(id, usrname, password,connInfo) values ("+id+", '"+name+"','"+password+"',true)";
+		stmt.executeUpdate(sql);
+	}
+        
 	public void makeAllRegistersPassive() throws SQLException
 	{
 		int size = getIdList().size();

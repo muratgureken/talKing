@@ -1,5 +1,7 @@
 package mg.db;
 
+import java.net.Socket;
+import java.util.HashMap;
 import java.util.LinkedList;
 
 public class registerInfo {
@@ -8,6 +10,7 @@ public class registerInfo {
 	private LinkedList<Integer> socketList;
 	private LinkedList<String> ipList;
 	private LinkedList<Boolean> connStateList;
+        public HashMap<Integer, Socket> socketLib = new HashMap<Integer, Socket>();
 
 	public LinkedList<Integer> getIdList() {
 		return idList;
