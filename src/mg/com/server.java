@@ -4,7 +4,8 @@ import java.net.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.io.*; 
+import java.io.*;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -24,6 +25,9 @@ public class server extends registerInfo{
 	private Thread[] threads = new Thread[maxThreadNumber];
 	private boolean[] states = new boolean[maxThreadNumber];     
 	private int maxIdValue=0;
+	public HashMap<Integer, Socket> socketLibLocal = new HashMap<Integer, Socket>();
+	public HashMap<Integer, Integer> threadLib = new HashMap<Integer, Integer>();
+
 
 	public server(int port) throws SQLException{
 
@@ -153,6 +157,9 @@ public class server extends registerInfo{
 
 											//send update to all users
 
+											//addvalues to hashmaps
+											socketLibLocal.put(maxIdValue, socket[socketLokalInd]);
+											threadLib.put(maxIdValue, threadIndex);
 											//register user socket number
 											socketLib.put(receiverId, socket[socketLokalInd]);
 											messageTcp = msgp.IdResponseMessage(maxIdValue);
@@ -163,6 +170,15 @@ public class server extends registerInfo{
 											messageTcp = msgp.allDatabaseMessage(getIdList(), getUsrList(), getConnStateList());
 											out = new DataOutputStream(socket[socketLokalInd].getOutputStream()); 
 											out.writeUTF(messageTcp);
+											break;
+										case 5:
+											senderId  = Integer.parseInt(line.substring(1,9));
+											try {
+												closeMessagging(senderId);
+											} catch (SQLException e) {
+												// TODO Auto-generated catch block
+												e.printStackTrace();
+											}
 											break;
 										default:
 											break;
@@ -214,13 +230,16 @@ public class server extends registerInfo{
 		return threadIndex;
 	}
 
-	public void closeMessagging(int threadIndex, int socketIndex) throws SQLException{
+	public void closeMessagging(int id) throws SQLException{
+		Socket sckt = socketLibLocal.get(id);
+		int indexThr = threadLib.get(id);
+		
 		try {
-			states[threadIndex] = false;
+			states[indexThr] = false;
 			System.out.println("Closing connection");
 
 			// close connection
-			socket[socketIndex].close(); 
+			sckt.close(); 
 			in.close();
 		} catch (IOException ex) {
 			Logger.getLogger(server.class.getName()).log(Level.SEVERE, null, ex);

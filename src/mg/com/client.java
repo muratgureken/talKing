@@ -33,7 +33,7 @@ public class client{
 
 	public void clientConnect(String address, int port) 
 	{
-		port = 5000;
+		//port = 5000;
 		// establish a connection 
 		try
 		{ 
@@ -41,10 +41,10 @@ public class client{
 			System.out.println("Connected"); 
 
 			// takes input from terminal 
-			input  = new DataInputStream(System.in); 
-
+			input = new DataInputStream(
+					new BufferedInputStream(socket.getInputStream()));  
 			// sends output to the socket 
-			out    = new DataOutputStream(socket.getOutputStream()); 
+			out = new DataOutputStream(socket.getOutputStream()); 
 		} 
 		catch(UnknownHostException u) 
 		{ 
@@ -63,7 +63,7 @@ public class client{
 			String line = ""; 
 			try
 			{ 
-				line = input.readLine(); 
+				line = input.readUTF(); 
 				justMessageReceived = false;
 				messageId = Integer.parseInt(line.substring(0,1));
 				out.writeUTF(line); 
@@ -135,6 +135,17 @@ public class client{
 		}
 	}
 
+	public void extiChat()
+	{
+		tcpMessage = msgp.exitChat(userId);
+		try {
+			out.writeUTF(tcpMessage);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 	public void clientStopTalking()
 	{
 		keepTalking = false;

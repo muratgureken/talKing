@@ -92,6 +92,15 @@ public class messageProtocol {
 		return messageT2M;
 	}
 
+	public String exitChat(int id)
+	{
+		String messageT2M="5";
+		String buffer = Integer.toString(id);
+		messageT2M = messageT2M + zeroPad(buffer,8);
+
+		return messageT2M;		
+	}
+	
 	public String updateRequest(int id)
 	{
 		String messageT2M="4";

@@ -28,9 +28,11 @@ public class enterance extends JFrame{
 	JTextArea txtMessageRead;
 	JTextArea txtMessageSend;
 	JButton btnSend;
+	JButton btnExit;
 
 	public enterance() {
-		setEnabled(false);
+		setBounds(100,100,500,450);
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);
 
 		client clt = new client();
@@ -66,22 +68,26 @@ public class enterance extends JFrame{
 		txtPort.setColumns(10);
 
 		//listen to the message of another client
-		Thread listenClient = new Thread()
+		if(false)
 		{
-			public void run()
-			{	
-				String input="";
-				for(;;)
-				{
-					if(clt.justMessageReceived)
+			Thread listenClient = new Thread()
+			{
+				public void run()
+				{	
+					String input="";
+					for(;;)
 					{
-						input = "["+clt.otherUserName+"]   "+clt.messageIn;
-						txtMessageRead.setText(input);
-						clt.justMessageReceived=false;				
+						if(clt.justMessageReceived)
+						{
+							input = "["+clt.otherUserName+"]   "+clt.messageIn;
+							txtMessageRead.setText(input);
+							clt.justMessageReceived=false;				
+						}
 					}
 				}
-			}
-		};
+			};
+			listenClient.start();
+		}
 
 		btnConnect = new JButton("Connect");
 		btnConnect.addActionListener(new ActionListener() {
@@ -92,9 +98,10 @@ public class enterance extends JFrame{
 				//gelecek: clt.userId;
 				btnUpdate.setEnabled(true);
 				btnConnect.setEnabled(false);
+				btnExit.setEnabled(true);
 			}
 		});
-		btnConnect.setBounds(105, 109, 89, 23);
+		btnConnect.setBounds(27, 109, 89, 23);
 		getContentPane().add(btnConnect);
 
 		scrollPane = new JScrollPane();
@@ -121,7 +128,7 @@ public class enterance extends JFrame{
 				btnSend.setEnabled(true);
 			}
 		});
-		btnUpdate.setBounds(105, 143, 89, 23);
+		btnUpdate.setBounds(132, 145, 89, 23);
 		getContentPane().add(btnUpdate);
 
 		txtMessageRead = new JTextArea();
@@ -149,7 +156,7 @@ public class enterance extends JFrame{
 					clt.messageIn = txtMessageSend.getText();
 				}
 				clt.sendUserMessage();
-				
+
 				String input = "["+clt.userId+"]   "+clt.messageIn;
 				txtMessageRead.setText(input);
 
@@ -157,5 +164,15 @@ public class enterance extends JFrame{
 		});
 		btnSend.setBounds(355, 349, 89, 23);
 		getContentPane().add(btnSend);
+
+		btnExit = new JButton("Exit");
+		btnExit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				clt.extiChat();
+			}
+		});
+		btnExit.setEnabled(false);
+		btnExit.setBounds(132, 109, 89, 23);
+		getContentPane().add(btnExit);
 	}
 }

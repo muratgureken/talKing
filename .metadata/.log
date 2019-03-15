@@ -1,0 +1,1244 @@
+!SESSION 2019-03-16 00:56:18.404 -----------------------------------------------
+eclipse.buildId=4.9.0.I20180906-0745
+java.version=1.8.0_66
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=tr_TR
+Framework arguments:  -product org.eclipse.epp.package.jee.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.jee.product
+
+!ENTRY org.eclipse.jubula.app 4 0 2019-03-16 00:56:21.729
+!MESSAGE FrameworkEvent ERROR
+!STACK 0
+org.osgi.framework.BundleException: Could not resolve module: org.eclipse.jubula.app [1078]
+  Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.core; bundle-version="[7.0.0,8.0.0)"
+    -> Bundle-SymbolicName: org.eclipse.jubula.client.core; bundle-version="7.0.1.201811271306"; singleton:="true"
+       org.eclipse.jubula.client.core [1094]
+         No resolution report for the bundle.  Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.ui; bundle-version="[7.0.0,8.0.0)"
+    -> Bundle-SymbolicName: org.eclipse.jubula.client.ui; bundle-version="7.0.1.201811271306"; singleton:="true"
+       org.eclipse.jubula.client.ui [1105]
+         Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.core; bundle-version="[7.0.0,8.0.0)"
+           -> Bundle-SymbolicName: org.eclipse.jubula.client.core; bundle-version="7.0.1.201811271306"; singleton:="true"
+  Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.ui.rcp; bundle-version="[7.0.0,8.0.0)"
+    -> Bundle-SymbolicName: org.eclipse.jubula.client.ui.rcp; bundle-version="7.0.1.201811271306"; singleton:="true"
+       org.eclipse.jubula.client.ui.rcp [1106]
+         Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.core; bundle-version="[7.0.0,8.0.0)"
+           -> Bundle-SymbolicName: org.eclipse.jubula.client.core; bundle-version="7.0.1.201811271306"; singleton:="true"
+         Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.alm.mylyn.core; bundle-version="[7.0.0,8.0.0)"
+           -> Bundle-SymbolicName: org.eclipse.jubula.client.alm.mylyn.core; bundle-version="7.0.1.201811271306"; singleton:="true"
+              org.eclipse.jubula.client.alm.mylyn.core [1085]
+                Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.core; bundle-version="[7.0.0,8.0.0)"
+                  -> Bundle-SymbolicName: org.eclipse.jubula.client.core; bundle-version="7.0.1.201811271306"; singleton:="true"
+         Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.archive; bundle-version="[7.0.0,8.0.0)"
+           -> Bundle-SymbolicName: org.eclipse.jubula.client.archive; bundle-version="7.0.1.201811271306"; singleton:="true"
+              org.eclipse.jubula.client.archive [1091]
+                Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.core; bundle-version="[7.0.0,8.0.0)"
+                  -> Bundle-SymbolicName: org.eclipse.jubula.client.core; bundle-version="7.0.1.201811271306"; singleton:="true"
+         Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.ui; bundle-version="[7.0.0,8.0.0)"
+           -> Bundle-SymbolicName: org.eclipse.jubula.client.ui; bundle-version="7.0.1.201811271306"; singleton:="true"
+  Bundle was not resolved because of a uses constraint violation.
+  org.osgi.service.resolver.ResolutionException: Uses constraint violation. Unable to resolve resource org.eclipse.jubula.client.core [osgi.identity; type="osgi.bundle"; version:Version="7.0.1.201811271306"; osgi.identity="org.eclipse.jubula.client.core"; singleton:="true"] because it is exposed to package 'javax.xml.bind' from resources org.eclipse.osgi [osgi.identity; type="osgi.bundle"; version:Version="3.13.100.v20180827-1536"; osgi.identity="org.eclipse.osgi"; singleton:="true"] and javax.xml.bind [osgi.identity; type="osgi.bundle"; version:Version="2.2.0.v201105210648"; osgi.identity="javax.xml.bind"] via two dependency chains.
+
+Chain 1:
+  org.eclipse.jubula.client.core [osgi.identity; type="osgi.bundle"; version:Version="7.0.1.201811271306"; osgi.identity="org.eclipse.jubula.client.core"; singleton:="true"]
+    require: (&(osgi.wiring.bundle=org.eclipse.core.runtime)(&(bundle-version>=3.6.0)(!(bundle-version>=4.0.0))))
+     |
+    provide: osgi.wiring.bundle: org.eclipse.core.runtime
+  org.eclipse.osgi [osgi.identity; type="osgi.bundle"; version:Version="3.13.100.v20180827-1536"; osgi.identity="org.eclipse.osgi"; singleton:="true"]
+
+Chain 2:
+  org.eclipse.jubula.client.core [osgi.identity; type="osgi.bundle"; version:Version="7.0.1.201811271306"; osgi.identity="org.eclipse.jubula.client.core"; singleton:="true"]
+    require: (&(osgi.wiring.bundle=org.dom4j)(&(bundle-version>=1.6.1)(!(bundle-version>=2.0.0))))
+     |
+    provide: osgi.wiring.bundle; bundle-version:Version="1.6.1.v20170815-1500"; osgi.wiring.bundle="org.dom4j"
+  org.dom4j [osgi.identity; type="osgi.bundle"; version:Version="1.6.1.v20170815-1500"; osgi.identity="org.dom4j"]
+    import: (osgi.wiring.package=javax.xml.bind)
+     |
+    export: osgi.wiring.package: javax.xml.bind
+  javax.xml.bind [osgi.identity; type="osgi.bundle"; version:Version="2.2.0.v201105210648"; osgi.identity="javax.xml.bind"]
+	at org.eclipse.osgi.container.Module.start(Module.java:447)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1685)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1664)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.doContainerStartLevel(ModuleContainer.java:1627)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1558)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1)
+	at org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(EventManager.java:233)
+	at org.eclipse.osgi.framework.eventmgr.EventManager$EventThread.run(EventManager.java:343)
+
+!ENTRY org.eclipse.jubula.app.dbtool 4 0 2019-03-16 00:56:21.736
+!MESSAGE FrameworkEvent ERROR
+!STACK 0
+org.osgi.framework.BundleException: Could not resolve module: org.eclipse.jubula.app.dbtool [1081]
+  Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.core; bundle-version="[7.0.0,8.0.0)"
+    -> Bundle-SymbolicName: org.eclipse.jubula.client.core; bundle-version="7.0.1.201811271306"; singleton:="true"
+       org.eclipse.jubula.client.core [1094]
+         No resolution report for the bundle.  Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.archive; bundle-version="[7.0.0,8.0.0)"
+    -> Bundle-SymbolicName: org.eclipse.jubula.client.archive; bundle-version="7.0.1.201811271306"; singleton:="true"
+       org.eclipse.jubula.client.archive [1091]
+         Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.core; bundle-version="[7.0.0,8.0.0)"
+           -> Bundle-SymbolicName: org.eclipse.jubula.client.core; bundle-version="7.0.1.201811271306"; singleton:="true"
+  Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.cmd; bundle-version="[7.0.0,8.0.0)"
+    -> Bundle-SymbolicName: org.eclipse.jubula.client.cmd; bundle-version="7.0.1.201811271306"; singleton:="true"
+       org.eclipse.jubula.client.cmd [1093]
+         Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.core; bundle-version="[7.0.0,8.0.0)"
+           -> Bundle-SymbolicName: org.eclipse.jubula.client.core; bundle-version="7.0.1.201811271306"; singleton:="true"
+  Bundle was not resolved because of a uses constraint violation.
+  org.osgi.service.resolver.ResolutionException: Uses constraint violation. Unable to resolve resource org.eclipse.jubula.client.core [osgi.identity; type="osgi.bundle"; version:Version="7.0.1.201811271306"; osgi.identity="org.eclipse.jubula.client.core"; singleton:="true"] because it is exposed to package 'javax.xml.bind' from resources org.eclipse.osgi [osgi.identity; type="osgi.bundle"; version:Version="3.13.100.v20180827-1536"; osgi.identity="org.eclipse.osgi"; singleton:="true"] and javax.xml.bind [osgi.identity; type="osgi.bundle"; version:Version="2.2.0.v201105210648"; osgi.identity="javax.xml.bind"] via two dependency chains.
+
+Chain 1:
+  org.eclipse.jubula.client.core [osgi.identity; type="osgi.bundle"; version:Version="7.0.1.201811271306"; osgi.identity="org.eclipse.jubula.client.core"; singleton:="true"]
+    require: (&(osgi.wiring.bundle=org.eclipse.core.runtime)(&(bundle-version>=3.6.0)(!(bundle-version>=4.0.0))))
+     |
+    provide: osgi.wiring.bundle: org.eclipse.core.runtime
+  org.eclipse.osgi [osgi.identity; type="osgi.bundle"; version:Version="3.13.100.v20180827-1536"; osgi.identity="org.eclipse.osgi"; singleton:="true"]
+
+Chain 2:
+  org.eclipse.jubula.client.core [osgi.identity; type="osgi.bundle"; version:Version="7.0.1.201811271306"; osgi.identity="org.eclipse.jubula.client.core"; singleton:="true"]
+    require: (&(osgi.wiring.bundle=org.dom4j)(&(bundle-version>=1.6.1)(!(bundle-version>=2.0.0))))
+     |
+    provide: osgi.wiring.bundle; bundle-version:Version="1.6.1.v20170815-1500"; osgi.wiring.bundle="org.dom4j"
+  org.dom4j [osgi.identity; type="osgi.bundle"; version:Version="1.6.1.v20170815-1500"; osgi.identity="org.dom4j"]
+    import: (osgi.wiring.package=javax.xml.bind)
+     |
+    export: osgi.wiring.package: javax.xml.bind
+  javax.xml.bind [osgi.identity; type="osgi.bundle"; version:Version="2.2.0.v201105210648"; osgi.identity="javax.xml.bind"]
+	at org.eclipse.osgi.container.Module.start(Module.java:447)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1685)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1664)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.doContainerStartLevel(ModuleContainer.java:1627)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1558)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1)
+	at org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(EventManager.java:233)
+	at org.eclipse.osgi.framework.eventmgr.EventManager$EventThread.run(EventManager.java:343)
+
+!ENTRY org.eclipse.jubula.app.testexec 4 0 2019-03-16 00:56:21.748
+!MESSAGE FrameworkEvent ERROR
+!STACK 0
+org.osgi.framework.BundleException: Could not resolve module: org.eclipse.jubula.app.testexec [1082]
+  Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.cmd; bundle-version="[7.0.0,8.0.0)"
+    -> Bundle-SymbolicName: org.eclipse.jubula.client.cmd; bundle-version="7.0.1.201811271306"; singleton:="true"
+       org.eclipse.jubula.client.cmd [1093]
+         Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.core; bundle-version="[7.0.0,8.0.0)"
+           -> Bundle-SymbolicName: org.eclipse.jubula.client.core; bundle-version="7.0.1.201811271306"; singleton:="true"
+              org.eclipse.jubula.client.core [1094]
+                No resolution report for the bundle.  Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.core; bundle-version="[7.0.0,8.0.0)"
+    -> Bundle-SymbolicName: org.eclipse.jubula.client.core; bundle-version="7.0.1.201811271306"; singleton:="true"
+  Bundle was not resolved because of a uses constraint violation.
+  org.osgi.service.resolver.ResolutionException: Uses constraint violation. Unable to resolve resource org.eclipse.jubula.client.core [osgi.identity; type="osgi.bundle"; version:Version="7.0.1.201811271306"; osgi.identity="org.eclipse.jubula.client.core"; singleton:="true"] because it is exposed to package 'javax.xml.bind' from resources org.eclipse.osgi [osgi.identity; type="osgi.bundle"; version:Version="3.13.100.v20180827-1536"; osgi.identity="org.eclipse.osgi"; singleton:="true"] and javax.xml.bind [osgi.identity; type="osgi.bundle"; version:Version="2.2.0.v201105210648"; osgi.identity="javax.xml.bind"] via two dependency chains.
+
+Chain 1:
+  org.eclipse.jubula.client.core [osgi.identity; type="osgi.bundle"; version:Version="7.0.1.201811271306"; osgi.identity="org.eclipse.jubula.client.core"; singleton:="true"]
+    require: (&(osgi.wiring.bundle=org.eclipse.core.runtime)(&(bundle-version>=3.6.0)(!(bundle-version>=4.0.0))))
+     |
+    provide: osgi.wiring.bundle: org.eclipse.core.runtime
+  org.eclipse.osgi [osgi.identity; type="osgi.bundle"; version:Version="3.13.100.v20180827-1536"; osgi.identity="org.eclipse.osgi"; singleton:="true"]
+
+Chain 2:
+  org.eclipse.jubula.client.core [osgi.identity; type="osgi.bundle"; version:Version="7.0.1.201811271306"; osgi.identity="org.eclipse.jubula.client.core"; singleton:="true"]
+    require: (&(osgi.wiring.bundle=org.dom4j)(&(bundle-version>=1.6.1)(!(bundle-version>=2.0.0))))
+     |
+    provide: osgi.wiring.bundle; bundle-version:Version="1.6.1.v20170815-1500"; osgi.wiring.bundle="org.dom4j"
+  org.dom4j [osgi.identity; type="osgi.bundle"; version:Version="1.6.1.v20170815-1500"; osgi.identity="org.dom4j"]
+    import: (osgi.wiring.package=javax.xml.bind)
+     |
+    export: osgi.wiring.package: javax.xml.bind
+  javax.xml.bind [osgi.identity; type="osgi.bundle"; version:Version="2.2.0.v201105210648"; osgi.identity="javax.xml.bind"]
+	at org.eclipse.osgi.container.Module.start(Module.java:447)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1685)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1664)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.doContainerStartLevel(ModuleContainer.java:1627)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1558)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1)
+	at org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(EventManager.java:233)
+	at org.eclipse.osgi.framework.eventmgr.EventManager$EventThread.run(EventManager.java:343)
+
+!ENTRY org.eclipse.jubula.client.alm.mylyn.core 4 0 2019-03-16 00:56:21.845
+!MESSAGE FrameworkEvent ERROR
+!STACK 0
+org.osgi.framework.BundleException: Could not resolve module: org.eclipse.jubula.client.alm.mylyn.core [1085]
+  Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.core; bundle-version="[7.0.0,8.0.0)"
+    -> Bundle-SymbolicName: org.eclipse.jubula.client.core; bundle-version="7.0.1.201811271306"; singleton:="true"
+       org.eclipse.jubula.client.core [1094]
+         No resolution report for the bundle.  Bundle was not resolved because of a uses constraint violation.
+  org.osgi.service.resolver.ResolutionException: Uses constraint violation. Unable to resolve resource org.eclipse.jubula.client.core [osgi.identity; type="osgi.bundle"; version:Version="7.0.1.201811271306"; osgi.identity="org.eclipse.jubula.client.core"; singleton:="true"] because it is exposed to package 'javax.xml.bind' from resources org.eclipse.osgi [osgi.identity; type="osgi.bundle"; version:Version="3.13.100.v20180827-1536"; osgi.identity="org.eclipse.osgi"; singleton:="true"] and javax.xml.bind [osgi.identity; type="osgi.bundle"; version:Version="2.2.0.v201105210648"; osgi.identity="javax.xml.bind"] via two dependency chains.
+
+Chain 1:
+  org.eclipse.jubula.client.core [osgi.identity; type="osgi.bundle"; version:Version="7.0.1.201811271306"; osgi.identity="org.eclipse.jubula.client.core"; singleton:="true"]
+    require: (&(osgi.wiring.bundle=org.eclipse.core.runtime)(&(bundle-version>=3.6.0)(!(bundle-version>=4.0.0))))
+     |
+    provide: osgi.wiring.bundle: org.eclipse.core.runtime
+  org.eclipse.osgi [osgi.identity; type="osgi.bundle"; version:Version="3.13.100.v20180827-1536"; osgi.identity="org.eclipse.osgi"; singleton:="true"]
+
+Chain 2:
+  org.eclipse.jubula.client.core [osgi.identity; type="osgi.bundle"; version:Version="7.0.1.201811271306"; osgi.identity="org.eclipse.jubula.client.core"; singleton:="true"]
+    require: (&(osgi.wiring.bundle=org.dom4j)(&(bundle-version>=1.6.1)(!(bundle-version>=2.0.0))))
+     |
+    provide: osgi.wiring.bundle; bundle-version:Version="1.6.1.v20170815-1500"; osgi.wiring.bundle="org.dom4j"
+  org.dom4j [osgi.identity; type="osgi.bundle"; version:Version="1.6.1.v20170815-1500"; osgi.identity="org.dom4j"]
+    import: (osgi.wiring.package=javax.xml.bind)
+     |
+    export: osgi.wiring.package: javax.xml.bind
+  javax.xml.bind [osgi.identity; type="osgi.bundle"; version:Version="2.2.0.v201105210648"; osgi.identity="javax.xml.bind"]
+	at org.eclipse.osgi.container.Module.start(Module.java:447)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1685)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1664)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.doContainerStartLevel(ModuleContainer.java:1627)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1558)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1)
+	at org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(EventManager.java:233)
+	at org.eclipse.osgi.framework.eventmgr.EventManager$EventThread.run(EventManager.java:343)
+
+!ENTRY org.eclipse.jubula.client.alm.mylyn.ui 4 0 2019-03-16 00:56:21.864
+!MESSAGE FrameworkEvent ERROR
+!STACK 0
+org.osgi.framework.BundleException: Could not resolve module: org.eclipse.jubula.client.alm.mylyn.ui [1086]
+  Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.ui; bundle-version="[7.0.0,8.0.0)"
+    -> Bundle-SymbolicName: org.eclipse.jubula.client.ui; bundle-version="7.0.1.201811271306"; singleton:="true"
+       org.eclipse.jubula.client.ui [1105]
+         Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.core; bundle-version="[7.0.0,8.0.0)"
+           -> Bundle-SymbolicName: org.eclipse.jubula.client.core; bundle-version="7.0.1.201811271306"; singleton:="true"
+              org.eclipse.jubula.client.core [1094]
+                No resolution report for the bundle.  Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.ui.rcp; bundle-version="[7.0.0,8.0.0)"
+    -> Bundle-SymbolicName: org.eclipse.jubula.client.ui.rcp; bundle-version="7.0.1.201811271306"; singleton:="true"
+       org.eclipse.jubula.client.ui.rcp [1106]
+         Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.core; bundle-version="[7.0.0,8.0.0)"
+           -> Bundle-SymbolicName: org.eclipse.jubula.client.core; bundle-version="7.0.1.201811271306"; singleton:="true"
+         Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.alm.mylyn.core; bundle-version="[7.0.0,8.0.0)"
+           -> Bundle-SymbolicName: org.eclipse.jubula.client.alm.mylyn.core; bundle-version="7.0.1.201811271306"; singleton:="true"
+              org.eclipse.jubula.client.alm.mylyn.core [1085]
+                Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.core; bundle-version="[7.0.0,8.0.0)"
+                  -> Bundle-SymbolicName: org.eclipse.jubula.client.core; bundle-version="7.0.1.201811271306"; singleton:="true"
+         Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.archive; bundle-version="[7.0.0,8.0.0)"
+           -> Bundle-SymbolicName: org.eclipse.jubula.client.archive; bundle-version="7.0.1.201811271306"; singleton:="true"
+              org.eclipse.jubula.client.archive [1091]
+                Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.core; bundle-version="[7.0.0,8.0.0)"
+                  -> Bundle-SymbolicName: org.eclipse.jubula.client.core; bundle-version="7.0.1.201811271306"; singleton:="true"
+         Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.ui; bundle-version="[7.0.0,8.0.0)"
+           -> Bundle-SymbolicName: org.eclipse.jubula.client.ui; bundle-version="7.0.1.201811271306"; singleton:="true"
+  Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.core; bundle-version="[7.0.0,8.0.0)"
+    -> Bundle-SymbolicName: org.eclipse.jubula.client.core; bundle-version="7.0.1.201811271306"; singleton:="true"
+  Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.alm.mylyn.core; bundle-version="[7.0.0,8.0.0)"
+    -> Bundle-SymbolicName: org.eclipse.jubula.client.alm.mylyn.core; bundle-version="7.0.1.201811271306"; singleton:="true"
+  Bundle was not resolved because of a uses constraint violation.
+  org.osgi.service.resolver.ResolutionException: Uses constraint violation. Unable to resolve resource org.eclipse.jubula.client.core [osgi.identity; type="osgi.bundle"; version:Version="7.0.1.201811271306"; osgi.identity="org.eclipse.jubula.client.core"; singleton:="true"] because it is exposed to package 'javax.xml.bind' from resources org.eclipse.osgi [osgi.identity; type="osgi.bundle"; version:Version="3.13.100.v20180827-1536"; osgi.identity="org.eclipse.osgi"; singleton:="true"] and javax.xml.bind [osgi.identity; type="osgi.bundle"; version:Version="2.2.0.v201105210648"; osgi.identity="javax.xml.bind"] via two dependency chains.
+
+Chain 1:
+  org.eclipse.jubula.client.core [osgi.identity; type="osgi.bundle"; version:Version="7.0.1.201811271306"; osgi.identity="org.eclipse.jubula.client.core"; singleton:="true"]
+    require: (&(osgi.wiring.bundle=org.eclipse.core.runtime)(&(bundle-version>=3.6.0)(!(bundle-version>=4.0.0))))
+     |
+    provide: osgi.wiring.bundle: org.eclipse.core.runtime
+  org.eclipse.osgi [osgi.identity; type="osgi.bundle"; version:Version="3.13.100.v20180827-1536"; osgi.identity="org.eclipse.osgi"; singleton:="true"]
+
+Chain 2:
+  org.eclipse.jubula.client.core [osgi.identity; type="osgi.bundle"; version:Version="7.0.1.201811271306"; osgi.identity="org.eclipse.jubula.client.core"; singleton:="true"]
+    require: (&(osgi.wiring.bundle=org.dom4j)(&(bundle-version>=1.6.1)(!(bundle-version>=2.0.0))))
+     |
+    provide: osgi.wiring.bundle; bundle-version:Version="1.6.1.v20170815-1500"; osgi.wiring.bundle="org.dom4j"
+  org.dom4j [osgi.identity; type="osgi.bundle"; version:Version="1.6.1.v20170815-1500"; osgi.identity="org.dom4j"]
+    import: (osgi.wiring.package=javax.xml.bind)
+     |
+    export: osgi.wiring.package: javax.xml.bind
+  javax.xml.bind [osgi.identity; type="osgi.bundle"; version:Version="2.2.0.v201105210648"; osgi.identity="javax.xml.bind"]
+	at org.eclipse.osgi.container.Module.start(Module.java:447)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1685)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1664)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.doContainerStartLevel(ModuleContainer.java:1627)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1558)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1)
+	at org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(EventManager.java:233)
+	at org.eclipse.osgi.framework.eventmgr.EventManager$EventThread.run(EventManager.java:343)
+
+!ENTRY org.eclipse.jubula.client.alm.mylyn.ui.bridge 4 0 2019-03-16 00:56:21.883
+!MESSAGE FrameworkEvent ERROR
+!STACK 0
+org.osgi.framework.BundleException: Could not resolve module: org.eclipse.jubula.client.alm.mylyn.ui.bridge [1087]
+  Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.ui.rcp; bundle-version="[7.0.0,8.0.0)"
+    -> Bundle-SymbolicName: org.eclipse.jubula.client.ui.rcp; bundle-version="7.0.1.201811271306"; singleton:="true"
+       org.eclipse.jubula.client.ui.rcp [1106]
+         Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.core; bundle-version="[7.0.0,8.0.0)"
+           -> Bundle-SymbolicName: org.eclipse.jubula.client.core; bundle-version="7.0.1.201811271306"; singleton:="true"
+              org.eclipse.jubula.client.core [1094]
+                No resolution report for the bundle.         Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.alm.mylyn.core; bundle-version="[7.0.0,8.0.0)"
+           -> Bundle-SymbolicName: org.eclipse.jubula.client.alm.mylyn.core; bundle-version="7.0.1.201811271306"; singleton:="true"
+              org.eclipse.jubula.client.alm.mylyn.core [1085]
+                Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.core; bundle-version="[7.0.0,8.0.0)"
+                  -> Bundle-SymbolicName: org.eclipse.jubula.client.core; bundle-version="7.0.1.201811271306"; singleton:="true"
+         Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.archive; bundle-version="[7.0.0,8.0.0)"
+           -> Bundle-SymbolicName: org.eclipse.jubula.client.archive; bundle-version="7.0.1.201811271306"; singleton:="true"
+              org.eclipse.jubula.client.archive [1091]
+                Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.core; bundle-version="[7.0.0,8.0.0)"
+                  -> Bundle-SymbolicName: org.eclipse.jubula.client.core; bundle-version="7.0.1.201811271306"; singleton:="true"
+         Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.ui; bundle-version="[7.0.0,8.0.0)"
+           -> Bundle-SymbolicName: org.eclipse.jubula.client.ui; bundle-version="7.0.1.201811271306"; singleton:="true"
+              org.eclipse.jubula.client.ui [1105]
+                Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.core; bundle-version="[7.0.0,8.0.0)"
+                  -> Bundle-SymbolicName: org.eclipse.jubula.client.core; bundle-version="7.0.1.201811271306"; singleton:="true"
+  Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.ui; bundle-version="[7.0.0,8.0.0)"
+    -> Bundle-SymbolicName: org.eclipse.jubula.client.ui; bundle-version="7.0.1.201811271306"; singleton:="true"
+  Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.core; bundle-version="[7.0.0,8.0.0)"
+    -> Bundle-SymbolicName: org.eclipse.jubula.client.core; bundle-version="7.0.1.201811271306"; singleton:="true"
+  Bundle was not resolved because of a uses constraint violation.
+  org.osgi.service.resolver.ResolutionException: Uses constraint violation. Unable to resolve resource org.eclipse.jubula.client.core [osgi.identity; type="osgi.bundle"; version:Version="7.0.1.201811271306"; osgi.identity="org.eclipse.jubula.client.core"; singleton:="true"] because it is exposed to package 'javax.xml.bind' from resources org.eclipse.osgi [osgi.identity; type="osgi.bundle"; version:Version="3.13.100.v20180827-1536"; osgi.identity="org.eclipse.osgi"; singleton:="true"] and javax.xml.bind [osgi.identity; type="osgi.bundle"; version:Version="2.2.0.v201105210648"; osgi.identity="javax.xml.bind"] via two dependency chains.
+
+Chain 1:
+  org.eclipse.jubula.client.core [osgi.identity; type="osgi.bundle"; version:Version="7.0.1.201811271306"; osgi.identity="org.eclipse.jubula.client.core"; singleton:="true"]
+    require: (&(osgi.wiring.bundle=org.eclipse.core.runtime)(&(bundle-version>=3.6.0)(!(bundle-version>=4.0.0))))
+     |
+    provide: osgi.wiring.bundle: org.eclipse.core.runtime
+  org.eclipse.osgi [osgi.identity; type="osgi.bundle"; version:Version="3.13.100.v20180827-1536"; osgi.identity="org.eclipse.osgi"; singleton:="true"]
+
+Chain 2:
+  org.eclipse.jubula.client.core [osgi.identity; type="osgi.bundle"; version:Version="7.0.1.201811271306"; osgi.identity="org.eclipse.jubula.client.core"; singleton:="true"]
+    require: (&(osgi.wiring.bundle=org.dom4j)(&(bundle-version>=1.6.1)(!(bundle-version>=2.0.0))))
+     |
+    provide: osgi.wiring.bundle; bundle-version:Version="1.6.1.v20170815-1500"; osgi.wiring.bundle="org.dom4j"
+  org.dom4j [osgi.identity; type="osgi.bundle"; version:Version="1.6.1.v20170815-1500"; osgi.identity="org.dom4j"]
+    import: (osgi.wiring.package=javax.xml.bind)
+     |
+    export: osgi.wiring.package: javax.xml.bind
+  javax.xml.bind [osgi.identity; type="osgi.bundle"; version:Version="2.2.0.v201105210648"; osgi.identity="javax.xml.bind"]
+	at org.eclipse.osgi.container.Module.start(Module.java:447)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1685)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1664)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.doContainerStartLevel(ModuleContainer.java:1627)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1558)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1)
+	at org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(EventManager.java:233)
+	at org.eclipse.osgi.framework.eventmgr.EventManager$EventThread.run(EventManager.java:343)
+
+!ENTRY org.eclipse.jubula.client.alm.ui 4 0 2019-03-16 00:56:21.901
+!MESSAGE FrameworkEvent ERROR
+!STACK 0
+org.osgi.framework.BundleException: Could not resolve module: org.eclipse.jubula.client.alm.ui [1088]
+  Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.core; bundle-version="[7.0.0,8.0.0)"
+    -> Bundle-SymbolicName: org.eclipse.jubula.client.core; bundle-version="7.0.1.201811271306"; singleton:="true"
+       org.eclipse.jubula.client.core [1094]
+         No resolution report for the bundle.  Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.ui; bundle-version="[7.0.0,8.0.0)"
+    -> Bundle-SymbolicName: org.eclipse.jubula.client.ui; bundle-version="7.0.1.201811271306"; singleton:="true"
+       org.eclipse.jubula.client.ui [1105]
+         Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.core; bundle-version="[7.0.0,8.0.0)"
+           -> Bundle-SymbolicName: org.eclipse.jubula.client.core; bundle-version="7.0.1.201811271306"; singleton:="true"
+  Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.ui.rcp; bundle-version="[7.0.0,8.0.0)"
+    -> Bundle-SymbolicName: org.eclipse.jubula.client.ui.rcp; bundle-version="7.0.1.201811271306"; singleton:="true"
+       org.eclipse.jubula.client.ui.rcp [1106]
+         Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.core; bundle-version="[7.0.0,8.0.0)"
+           -> Bundle-SymbolicName: org.eclipse.jubula.client.core; bundle-version="7.0.1.201811271306"; singleton:="true"
+         Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.alm.mylyn.core; bundle-version="[7.0.0,8.0.0)"
+           -> Bundle-SymbolicName: org.eclipse.jubula.client.alm.mylyn.core; bundle-version="7.0.1.201811271306"; singleton:="true"
+              org.eclipse.jubula.client.alm.mylyn.core [1085]
+                Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.core; bundle-version="[7.0.0,8.0.0)"
+                  -> Bundle-SymbolicName: org.eclipse.jubula.client.core; bundle-version="7.0.1.201811271306"; singleton:="true"
+         Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.archive; bundle-version="[7.0.0,8.0.0)"
+           -> Bundle-SymbolicName: org.eclipse.jubula.client.archive; bundle-version="7.0.1.201811271306"; singleton:="true"
+              org.eclipse.jubula.client.archive [1091]
+                Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.core; bundle-version="[7.0.0,8.0.0)"
+                  -> Bundle-SymbolicName: org.eclipse.jubula.client.core; bundle-version="7.0.1.201811271306"; singleton:="true"
+         Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.ui; bundle-version="[7.0.0,8.0.0)"
+           -> Bundle-SymbolicName: org.eclipse.jubula.client.ui; bundle-version="7.0.1.201811271306"; singleton:="true"
+  Bundle was not resolved because of a uses constraint violation.
+  org.osgi.service.resolver.ResolutionException: Uses constraint violation. Unable to resolve resource org.eclipse.jubula.client.core [osgi.identity; type="osgi.bundle"; version:Version="7.0.1.201811271306"; osgi.identity="org.eclipse.jubula.client.core"; singleton:="true"] because it is exposed to package 'javax.xml.bind' from resources org.eclipse.osgi [osgi.identity; type="osgi.bundle"; version:Version="3.13.100.v20180827-1536"; osgi.identity="org.eclipse.osgi"; singleton:="true"] and javax.xml.bind [osgi.identity; type="osgi.bundle"; version:Version="2.2.0.v201105210648"; osgi.identity="javax.xml.bind"] via two dependency chains.
+
+Chain 1:
+  org.eclipse.jubula.client.core [osgi.identity; type="osgi.bundle"; version:Version="7.0.1.201811271306"; osgi.identity="org.eclipse.jubula.client.core"; singleton:="true"]
+    require: (&(osgi.wiring.bundle=org.eclipse.core.runtime)(&(bundle-version>=3.6.0)(!(bundle-version>=4.0.0))))
+     |
+    provide: osgi.wiring.bundle: org.eclipse.core.runtime
+  org.eclipse.osgi [osgi.identity; type="osgi.bundle"; version:Version="3.13.100.v20180827-1536"; osgi.identity="org.eclipse.osgi"; singleton:="true"]
+
+Chain 2:
+  org.eclipse.jubula.client.core [osgi.identity; type="osgi.bundle"; version:Version="7.0.1.201811271306"; osgi.identity="org.eclipse.jubula.client.core"; singleton:="true"]
+    require: (&(osgi.wiring.bundle=org.dom4j)(&(bundle-version>=1.6.1)(!(bundle-version>=2.0.0))))
+     |
+    provide: osgi.wiring.bundle; bundle-version:Version="1.6.1.v20170815-1500"; osgi.wiring.bundle="org.dom4j"
+  org.dom4j [osgi.identity; type="osgi.bundle"; version:Version="1.6.1.v20170815-1500"; osgi.identity="org.dom4j"]
+    import: (osgi.wiring.package=javax.xml.bind)
+     |
+    export: osgi.wiring.package: javax.xml.bind
+  javax.xml.bind [osgi.identity; type="osgi.bundle"; version:Version="2.2.0.v201105210648"; osgi.identity="javax.xml.bind"]
+	at org.eclipse.osgi.container.Module.start(Module.java:447)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1685)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1664)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.doContainerStartLevel(ModuleContainer.java:1627)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1558)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1)
+	at org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(EventManager.java:233)
+	at org.eclipse.osgi.framework.eventmgr.EventManager$EventThread.run(EventManager.java:343)
+
+!ENTRY org.eclipse.jubula.client.api.ui 4 0 2019-03-16 00:56:21.920
+!MESSAGE FrameworkEvent ERROR
+!STACK 0
+org.osgi.framework.BundleException: Could not resolve module: org.eclipse.jubula.client.api.ui [1090]
+  Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.core; bundle-version="[7.0.0,8.0.0)"
+    -> Bundle-SymbolicName: org.eclipse.jubula.client.core; bundle-version="7.0.1.201811271306"; singleton:="true"
+       org.eclipse.jubula.client.core [1094]
+         No resolution report for the bundle.  Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.ui; bundle-version="[7.0.0,8.0.0)"
+    -> Bundle-SymbolicName: org.eclipse.jubula.client.ui; bundle-version="7.0.1.201811271306"; singleton:="true"
+       org.eclipse.jubula.client.ui [1105]
+         Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.core; bundle-version="[7.0.0,8.0.0)"
+           -> Bundle-SymbolicName: org.eclipse.jubula.client.core; bundle-version="7.0.1.201811271306"; singleton:="true"
+  Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.ui.rcp; bundle-version="[7.0.0,8.0.0)"
+    -> Bundle-SymbolicName: org.eclipse.jubula.client.ui.rcp; bundle-version="7.0.1.201811271306"; singleton:="true"
+       org.eclipse.jubula.client.ui.rcp [1106]
+         Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.core; bundle-version="[7.0.0,8.0.0)"
+           -> Bundle-SymbolicName: org.eclipse.jubula.client.core; bundle-version="7.0.1.201811271306"; singleton:="true"
+         Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.alm.mylyn.core; bundle-version="[7.0.0,8.0.0)"
+           -> Bundle-SymbolicName: org.eclipse.jubula.client.alm.mylyn.core; bundle-version="7.0.1.201811271306"; singleton:="true"
+              org.eclipse.jubula.client.alm.mylyn.core [1085]
+                Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.core; bundle-version="[7.0.0,8.0.0)"
+                  -> Bundle-SymbolicName: org.eclipse.jubula.client.core; bundle-version="7.0.1.201811271306"; singleton:="true"
+         Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.archive; bundle-version="[7.0.0,8.0.0)"
+           -> Bundle-SymbolicName: org.eclipse.jubula.client.archive; bundle-version="7.0.1.201811271306"; singleton:="true"
+              org.eclipse.jubula.client.archive [1091]
+                Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.core; bundle-version="[7.0.0,8.0.0)"
+                  -> Bundle-SymbolicName: org.eclipse.jubula.client.core; bundle-version="7.0.1.201811271306"; singleton:="true"
+         Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.ui; bundle-version="[7.0.0,8.0.0)"
+           -> Bundle-SymbolicName: org.eclipse.jubula.client.ui; bundle-version="7.0.1.201811271306"; singleton:="true"
+  Bundle was not resolved because of a uses constraint violation.
+  org.osgi.service.resolver.ResolutionException: Uses constraint violation. Unable to resolve resource org.eclipse.jubula.client.core [osgi.identity; type="osgi.bundle"; version:Version="7.0.1.201811271306"; osgi.identity="org.eclipse.jubula.client.core"; singleton:="true"] because it is exposed to package 'javax.xml.bind' from resources org.eclipse.osgi [osgi.identity; type="osgi.bundle"; version:Version="3.13.100.v20180827-1536"; osgi.identity="org.eclipse.osgi"; singleton:="true"] and javax.xml.bind [osgi.identity; type="osgi.bundle"; version:Version="2.2.0.v201105210648"; osgi.identity="javax.xml.bind"] via two dependency chains.
+
+Chain 1:
+  org.eclipse.jubula.client.core [osgi.identity; type="osgi.bundle"; version:Version="7.0.1.201811271306"; osgi.identity="org.eclipse.jubula.client.core"; singleton:="true"]
+    require: (&(osgi.wiring.bundle=org.eclipse.core.runtime)(&(bundle-version>=3.6.0)(!(bundle-version>=4.0.0))))
+     |
+    provide: osgi.wiring.bundle: org.eclipse.core.runtime
+  org.eclipse.osgi [osgi.identity; type="osgi.bundle"; version:Version="3.13.100.v20180827-1536"; osgi.identity="org.eclipse.osgi"; singleton:="true"]
+
+Chain 2:
+  org.eclipse.jubula.client.core [osgi.identity; type="osgi.bundle"; version:Version="7.0.1.201811271306"; osgi.identity="org.eclipse.jubula.client.core"; singleton:="true"]
+    require: (&(osgi.wiring.bundle=org.dom4j)(&(bundle-version>=1.6.1)(!(bundle-version>=2.0.0))))
+     |
+    provide: osgi.wiring.bundle; bundle-version:Version="1.6.1.v20170815-1500"; osgi.wiring.bundle="org.dom4j"
+  org.dom4j [osgi.identity; type="osgi.bundle"; version:Version="1.6.1.v20170815-1500"; osgi.identity="org.dom4j"]
+    import: (osgi.wiring.package=javax.xml.bind)
+     |
+    export: osgi.wiring.package: javax.xml.bind
+  javax.xml.bind [osgi.identity; type="osgi.bundle"; version:Version="2.2.0.v201105210648"; osgi.identity="javax.xml.bind"]
+	at org.eclipse.osgi.container.Module.start(Module.java:447)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1685)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1664)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.doContainerStartLevel(ModuleContainer.java:1627)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1558)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1)
+	at org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(EventManager.java:233)
+	at org.eclipse.osgi.framework.eventmgr.EventManager$EventThread.run(EventManager.java:343)
+
+!ENTRY org.eclipse.jubula.client.autagent 4 0 2019-03-16 00:56:21.937
+!MESSAGE FrameworkEvent ERROR
+!STACK 0
+org.osgi.framework.BundleException: Could not resolve module: org.eclipse.jubula.client.autagent [1092]
+  Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.ui; bundle-version="[7.0.0,8.0.0)"
+    -> Bundle-SymbolicName: org.eclipse.jubula.client.ui; bundle-version="7.0.1.201811271306"; singleton:="true"
+       org.eclipse.jubula.client.ui [1105]
+         Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.core; bundle-version="[7.0.0,8.0.0)"
+           -> Bundle-SymbolicName: org.eclipse.jubula.client.core; bundle-version="7.0.1.201811271306"; singleton:="true"
+              org.eclipse.jubula.client.core [1094]
+                No resolution report for the bundle.  Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.ui.rcp; bundle-version="[7.0.0,8.0.0)"
+    -> Bundle-SymbolicName: org.eclipse.jubula.client.ui.rcp; bundle-version="7.0.1.201811271306"; singleton:="true"
+       org.eclipse.jubula.client.ui.rcp [1106]
+         Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.core; bundle-version="[7.0.0,8.0.0)"
+           -> Bundle-SymbolicName: org.eclipse.jubula.client.core; bundle-version="7.0.1.201811271306"; singleton:="true"
+         Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.alm.mylyn.core; bundle-version="[7.0.0,8.0.0)"
+           -> Bundle-SymbolicName: org.eclipse.jubula.client.alm.mylyn.core; bundle-version="7.0.1.201811271306"; singleton:="true"
+              org.eclipse.jubula.client.alm.mylyn.core [1085]
+                Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.core; bundle-version="[7.0.0,8.0.0)"
+                  -> Bundle-SymbolicName: org.eclipse.jubula.client.core; bundle-version="7.0.1.201811271306"; singleton:="true"
+         Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.archive; bundle-version="[7.0.0,8.0.0)"
+           -> Bundle-SymbolicName: org.eclipse.jubula.client.archive; bundle-version="7.0.1.201811271306"; singleton:="true"
+              org.eclipse.jubula.client.archive [1091]
+                Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.core; bundle-version="[7.0.0,8.0.0)"
+                  -> Bundle-SymbolicName: org.eclipse.jubula.client.core; bundle-version="7.0.1.201811271306"; singleton:="true"
+         Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.ui; bundle-version="[7.0.0,8.0.0)"
+           -> Bundle-SymbolicName: org.eclipse.jubula.client.ui; bundle-version="7.0.1.201811271306"; singleton:="true"
+  Bundle was not resolved because of a uses constraint violation.
+  org.osgi.service.resolver.ResolutionException: Uses constraint violation. Unable to resolve resource org.eclipse.jubula.client.core [osgi.identity; type="osgi.bundle"; version:Version="7.0.1.201811271306"; osgi.identity="org.eclipse.jubula.client.core"; singleton:="true"] because it is exposed to package 'javax.xml.bind' from resources org.eclipse.osgi [osgi.identity; type="osgi.bundle"; version:Version="3.13.100.v20180827-1536"; osgi.identity="org.eclipse.osgi"; singleton:="true"] and javax.xml.bind [osgi.identity; type="osgi.bundle"; version:Version="2.2.0.v201105210648"; osgi.identity="javax.xml.bind"] via two dependency chains.
+
+Chain 1:
+  org.eclipse.jubula.client.core [osgi.identity; type="osgi.bundle"; version:Version="7.0.1.201811271306"; osgi.identity="org.eclipse.jubula.client.core"; singleton:="true"]
+    require: (&(osgi.wiring.bundle=org.eclipse.core.runtime)(&(bundle-version>=3.6.0)(!(bundle-version>=4.0.0))))
+     |
+    provide: osgi.wiring.bundle: org.eclipse.core.runtime
+  org.eclipse.osgi [osgi.identity; type="osgi.bundle"; version:Version="3.13.100.v20180827-1536"; osgi.identity="org.eclipse.osgi"; singleton:="true"]
+
+Chain 2:
+  org.eclipse.jubula.client.core [osgi.identity; type="osgi.bundle"; version:Version="7.0.1.201811271306"; osgi.identity="org.eclipse.jubula.client.core"; singleton:="true"]
+    require: (&(osgi.wiring.bundle=org.dom4j)(&(bundle-version>=1.6.1)(!(bundle-version>=2.0.0))))
+     |
+    provide: osgi.wiring.bundle; bundle-version:Version="1.6.1.v20170815-1500"; osgi.wiring.bundle="org.dom4j"
+  org.dom4j [osgi.identity; type="osgi.bundle"; version:Version="1.6.1.v20170815-1500"; osgi.identity="org.dom4j"]
+    import: (osgi.wiring.package=javax.xml.bind)
+     |
+    export: osgi.wiring.package: javax.xml.bind
+  javax.xml.bind [osgi.identity; type="osgi.bundle"; version:Version="2.2.0.v201105210648"; osgi.identity="javax.xml.bind"]
+	at org.eclipse.osgi.container.Module.start(Module.java:447)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1685)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1664)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.doContainerStartLevel(ModuleContainer.java:1627)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1558)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1)
+	at org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(EventManager.java:233)
+	at org.eclipse.osgi.framework.eventmgr.EventManager$EventThread.run(EventManager.java:343)
+
+!ENTRY org.eclipse.jubula.client.core 4 0 2019-03-16 00:56:21.948
+!MESSAGE FrameworkEvent ERROR
+!STACK 0
+org.osgi.framework.BundleException: Could not resolve module: org.eclipse.jubula.client.core [1094]
+  Bundle was not resolved because of a uses constraint violation.
+  org.osgi.service.resolver.ResolutionException: Uses constraint violation. Unable to resolve resource org.eclipse.jubula.client.core [osgi.identity; type="osgi.bundle"; version:Version="7.0.1.201811271306"; osgi.identity="org.eclipse.jubula.client.core"; singleton:="true"] because it is exposed to package 'javax.xml.bind' from resources org.eclipse.osgi [osgi.identity; type="osgi.bundle"; version:Version="3.13.100.v20180827-1536"; osgi.identity="org.eclipse.osgi"; singleton:="true"] and javax.xml.bind [osgi.identity; type="osgi.bundle"; version:Version="2.2.0.v201105210648"; osgi.identity="javax.xml.bind"] via two dependency chains.
+
+Chain 1:
+  org.eclipse.jubula.client.core [osgi.identity; type="osgi.bundle"; version:Version="7.0.1.201811271306"; osgi.identity="org.eclipse.jubula.client.core"; singleton:="true"]
+    require: (&(osgi.wiring.bundle=org.eclipse.core.runtime)(&(bundle-version>=3.6.0)(!(bundle-version>=4.0.0))))
+     |
+    provide: osgi.wiring.bundle: org.eclipse.core.runtime
+  org.eclipse.osgi [osgi.identity; type="osgi.bundle"; version:Version="3.13.100.v20180827-1536"; osgi.identity="org.eclipse.osgi"; singleton:="true"]
+
+Chain 2:
+  org.eclipse.jubula.client.core [osgi.identity; type="osgi.bundle"; version:Version="7.0.1.201811271306"; osgi.identity="org.eclipse.jubula.client.core"; singleton:="true"]
+    require: (&(osgi.wiring.bundle=org.dom4j)(&(bundle-version>=1.6.1)(!(bundle-version>=2.0.0))))
+     |
+    provide: osgi.wiring.bundle; bundle-version:Version="1.6.1.v20170815-1500"; osgi.wiring.bundle="org.dom4j"
+  org.dom4j [osgi.identity; type="osgi.bundle"; version:Version="1.6.1.v20170815-1500"; osgi.identity="org.dom4j"]
+    import: (osgi.wiring.package=javax.xml.bind)
+     |
+    export: osgi.wiring.package: javax.xml.bind
+  javax.xml.bind [osgi.identity; type="osgi.bundle"; version:Version="2.2.0.v201105210648"; osgi.identity="javax.xml.bind"]
+	at org.eclipse.osgi.container.Module.start(Module.java:447)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1685)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1664)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.doContainerStartLevel(ModuleContainer.java:1627)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1558)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1)
+	at org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(EventManager.java:233)
+	at org.eclipse.osgi.framework.eventmgr.EventManager$EventThread.run(EventManager.java:343)
+
+!ENTRY org.eclipse.jubula.client.core.exporter.junit 4 0 2019-03-16 00:56:21.960
+!MESSAGE FrameworkEvent ERROR
+!STACK 0
+org.osgi.framework.BundleException: Could not resolve module: org.eclipse.jubula.client.core.exporter.junit [1095]
+  Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.core; bundle-version="[7.0.0,8.0.0)"
+    -> Bundle-SymbolicName: org.eclipse.jubula.client.core; bundle-version="7.0.1.201811271306"; singleton:="true"
+       org.eclipse.jubula.client.core [1094]
+         No resolution report for the bundle.  Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.ui; bundle-version="[7.0.0,8.0.0)"
+    -> Bundle-SymbolicName: org.eclipse.jubula.client.ui; bundle-version="7.0.1.201811271306"; singleton:="true"
+       org.eclipse.jubula.client.ui [1105]
+         Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.core; bundle-version="[7.0.0,8.0.0)"
+           -> Bundle-SymbolicName: org.eclipse.jubula.client.core; bundle-version="7.0.1.201811271306"; singleton:="true"
+  Bundle was not resolved because of a uses constraint violation.
+  org.osgi.service.resolver.ResolutionException: Uses constraint violation. Unable to resolve resource org.eclipse.jubula.client.core [osgi.identity; type="osgi.bundle"; version:Version="7.0.1.201811271306"; osgi.identity="org.eclipse.jubula.client.core"; singleton:="true"] because it is exposed to package 'javax.xml.bind' from resources org.eclipse.osgi [osgi.identity; type="osgi.bundle"; version:Version="3.13.100.v20180827-1536"; osgi.identity="org.eclipse.osgi"; singleton:="true"] and javax.xml.bind [osgi.identity; type="osgi.bundle"; version:Version="2.2.0.v201105210648"; osgi.identity="javax.xml.bind"] via two dependency chains.
+
+Chain 1:
+  org.eclipse.jubula.client.core [osgi.identity; type="osgi.bundle"; version:Version="7.0.1.201811271306"; osgi.identity="org.eclipse.jubula.client.core"; singleton:="true"]
+    require: (&(osgi.wiring.bundle=org.eclipse.core.runtime)(&(bundle-version>=3.6.0)(!(bundle-version>=4.0.0))))
+     |
+    provide: osgi.wiring.bundle: org.eclipse.core.runtime
+  org.eclipse.osgi [osgi.identity; type="osgi.bundle"; version:Version="3.13.100.v20180827-1536"; osgi.identity="org.eclipse.osgi"; singleton:="true"]
+
+Chain 2:
+  org.eclipse.jubula.client.core [osgi.identity; type="osgi.bundle"; version:Version="7.0.1.201811271306"; osgi.identity="org.eclipse.jubula.client.core"; singleton:="true"]
+    require: (&(osgi.wiring.bundle=org.dom4j)(&(bundle-version>=1.6.1)(!(bundle-version>=2.0.0))))
+     |
+    provide: osgi.wiring.bundle; bundle-version:Version="1.6.1.v20170815-1500"; osgi.wiring.bundle="org.dom4j"
+  org.dom4j [osgi.identity; type="osgi.bundle"; version:Version="1.6.1.v20170815-1500"; osgi.identity="org.dom4j"]
+    import: (osgi.wiring.package=javax.xml.bind)
+     |
+    export: osgi.wiring.package: javax.xml.bind
+  javax.xml.bind [osgi.identity; type="osgi.bundle"; version:Version="2.2.0.v201105210648"; osgi.identity="javax.xml.bind"]
+	at org.eclipse.osgi.container.Module.start(Module.java:447)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1685)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1664)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.doContainerStartLevel(ModuleContainer.java:1627)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1558)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1)
+	at org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(EventManager.java:233)
+	at org.eclipse.osgi.framework.eventmgr.EventManager$EventThread.run(EventManager.java:343)
+
+!ENTRY org.eclipse.jubula.client.core.functions 4 0 2019-03-16 00:56:21.970
+!MESSAGE FrameworkEvent ERROR
+!STACK 0
+org.osgi.framework.BundleException: Could not resolve module: org.eclipse.jubula.client.core.functions [1096]
+  Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.core; bundle-version="[7.0.0,8.0.0)"
+    -> Bundle-SymbolicName: org.eclipse.jubula.client.core; bundle-version="7.0.1.201811271306"; singleton:="true"
+       org.eclipse.jubula.client.core [1094]
+         No resolution report for the bundle.  Bundle was not resolved because of a uses constraint violation.
+  org.osgi.service.resolver.ResolutionException: Uses constraint violation. Unable to resolve resource org.eclipse.jubula.client.core [osgi.identity; type="osgi.bundle"; version:Version="7.0.1.201811271306"; osgi.identity="org.eclipse.jubula.client.core"; singleton:="true"] because it is exposed to package 'javax.xml.bind' from resources org.eclipse.osgi [osgi.identity; type="osgi.bundle"; version:Version="3.13.100.v20180827-1536"; osgi.identity="org.eclipse.osgi"; singleton:="true"] and javax.xml.bind [osgi.identity; type="osgi.bundle"; version:Version="2.2.0.v201105210648"; osgi.identity="javax.xml.bind"] via two dependency chains.
+
+Chain 1:
+  org.eclipse.jubula.client.core [osgi.identity; type="osgi.bundle"; version:Version="7.0.1.201811271306"; osgi.identity="org.eclipse.jubula.client.core"; singleton:="true"]
+    require: (&(osgi.wiring.bundle=org.eclipse.core.runtime)(&(bundle-version>=3.6.0)(!(bundle-version>=4.0.0))))
+     |
+    provide: osgi.wiring.bundle: org.eclipse.core.runtime
+  org.eclipse.osgi [osgi.identity; type="osgi.bundle"; version:Version="3.13.100.v20180827-1536"; osgi.identity="org.eclipse.osgi"; singleton:="true"]
+
+Chain 2:
+  org.eclipse.jubula.client.core [osgi.identity; type="osgi.bundle"; version:Version="7.0.1.201811271306"; osgi.identity="org.eclipse.jubula.client.core"; singleton:="true"]
+    require: (&(osgi.wiring.bundle=org.dom4j)(&(bundle-version>=1.6.1)(!(bundle-version>=2.0.0))))
+     |
+    provide: osgi.wiring.bundle; bundle-version:Version="1.6.1.v20170815-1500"; osgi.wiring.bundle="org.dom4j"
+  org.dom4j [osgi.identity; type="osgi.bundle"; version:Version="1.6.1.v20170815-1500"; osgi.identity="org.dom4j"]
+    import: (osgi.wiring.package=javax.xml.bind)
+     |
+    export: osgi.wiring.package: javax.xml.bind
+  javax.xml.bind [osgi.identity; type="osgi.bundle"; version:Version="2.2.0.v201105210648"; osgi.identity="javax.xml.bind"]
+	at org.eclipse.osgi.container.Module.start(Module.java:447)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1685)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1664)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.doContainerStartLevel(ModuleContainer.java:1627)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1558)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1)
+	at org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(EventManager.java:233)
+	at org.eclipse.osgi.framework.eventmgr.EventManager$EventThread.run(EventManager.java:343)
+
+!ENTRY org.eclipse.jubula.client.inspector.ui 4 0 2019-03-16 00:56:21.985
+!MESSAGE FrameworkEvent ERROR
+!STACK 0
+org.osgi.framework.BundleException: Could not resolve module: org.eclipse.jubula.client.inspector.ui [1097]
+  Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.ui.rcp; bundle-version="[7.0.0,8.0.0)"
+    -> Bundle-SymbolicName: org.eclipse.jubula.client.ui.rcp; bundle-version="7.0.1.201811271306"; singleton:="true"
+       org.eclipse.jubula.client.ui.rcp [1106]
+         Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.core; bundle-version="[7.0.0,8.0.0)"
+           -> Bundle-SymbolicName: org.eclipse.jubula.client.core; bundle-version="7.0.1.201811271306"; singleton:="true"
+              org.eclipse.jubula.client.core [1094]
+                No resolution report for the bundle.         Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.alm.mylyn.core; bundle-version="[7.0.0,8.0.0)"
+           -> Bundle-SymbolicName: org.eclipse.jubula.client.alm.mylyn.core; bundle-version="7.0.1.201811271306"; singleton:="true"
+              org.eclipse.jubula.client.alm.mylyn.core [1085]
+                Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.core; bundle-version="[7.0.0,8.0.0)"
+                  -> Bundle-SymbolicName: org.eclipse.jubula.client.core; bundle-version="7.0.1.201811271306"; singleton:="true"
+         Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.archive; bundle-version="[7.0.0,8.0.0)"
+           -> Bundle-SymbolicName: org.eclipse.jubula.client.archive; bundle-version="7.0.1.201811271306"; singleton:="true"
+              org.eclipse.jubula.client.archive [1091]
+                Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.core; bundle-version="[7.0.0,8.0.0)"
+                  -> Bundle-SymbolicName: org.eclipse.jubula.client.core; bundle-version="7.0.1.201811271306"; singleton:="true"
+         Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.ui; bundle-version="[7.0.0,8.0.0)"
+           -> Bundle-SymbolicName: org.eclipse.jubula.client.ui; bundle-version="7.0.1.201811271306"; singleton:="true"
+              org.eclipse.jubula.client.ui [1105]
+                Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.core; bundle-version="[7.0.0,8.0.0)"
+                  -> Bundle-SymbolicName: org.eclipse.jubula.client.core; bundle-version="7.0.1.201811271306"; singleton:="true"
+  Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.ui; bundle-version="[7.0.0,8.0.0)"
+    -> Bundle-SymbolicName: org.eclipse.jubula.client.ui; bundle-version="7.0.1.201811271306"; singleton:="true"
+  Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.core; bundle-version="[7.0.0,8.0.0)"
+    -> Bundle-SymbolicName: org.eclipse.jubula.client.core; bundle-version="7.0.1.201811271306"; singleton:="true"
+  Bundle was not resolved because of a uses constraint violation.
+  org.osgi.service.resolver.ResolutionException: Uses constraint violation. Unable to resolve resource org.eclipse.jubula.client.core [osgi.identity; type="osgi.bundle"; version:Version="7.0.1.201811271306"; osgi.identity="org.eclipse.jubula.client.core"; singleton:="true"] because it is exposed to package 'javax.xml.bind' from resources org.eclipse.osgi [osgi.identity; type="osgi.bundle"; version:Version="3.13.100.v20180827-1536"; osgi.identity="org.eclipse.osgi"; singleton:="true"] and javax.xml.bind [osgi.identity; type="osgi.bundle"; version:Version="2.2.0.v201105210648"; osgi.identity="javax.xml.bind"] via two dependency chains.
+
+Chain 1:
+  org.eclipse.jubula.client.core [osgi.identity; type="osgi.bundle"; version:Version="7.0.1.201811271306"; osgi.identity="org.eclipse.jubula.client.core"; singleton:="true"]
+    require: (&(osgi.wiring.bundle=org.eclipse.core.runtime)(&(bundle-version>=3.6.0)(!(bundle-version>=4.0.0))))
+     |
+    provide: osgi.wiring.bundle: org.eclipse.core.runtime
+  org.eclipse.osgi [osgi.identity; type="osgi.bundle"; version:Version="3.13.100.v20180827-1536"; osgi.identity="org.eclipse.osgi"; singleton:="true"]
+
+Chain 2:
+  org.eclipse.jubula.client.core [osgi.identity; type="osgi.bundle"; version:Version="7.0.1.201811271306"; osgi.identity="org.eclipse.jubula.client.core"; singleton:="true"]
+    require: (&(osgi.wiring.bundle=org.dom4j)(&(bundle-version>=1.6.1)(!(bundle-version>=2.0.0))))
+     |
+    provide: osgi.wiring.bundle; bundle-version:Version="1.6.1.v20170815-1500"; osgi.wiring.bundle="org.dom4j"
+  org.dom4j [osgi.identity; type="osgi.bundle"; version:Version="1.6.1.v20170815-1500"; osgi.identity="org.dom4j"]
+    import: (osgi.wiring.package=javax.xml.bind)
+     |
+    export: osgi.wiring.package: javax.xml.bind
+  javax.xml.bind [osgi.identity; type="osgi.bundle"; version:Version="2.2.0.v201105210648"; osgi.identity="javax.xml.bind"]
+	at org.eclipse.osgi.container.Module.start(Module.java:447)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1685)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1664)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.doContainerStartLevel(ModuleContainer.java:1627)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1558)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1)
+	at org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(EventManager.java:233)
+	at org.eclipse.osgi.framework.eventmgr.EventManager$EventThread.run(EventManager.java:343)
+
+!ENTRY org.eclipse.jubula.client.teststyle 4 0 2019-03-16 00:56:22.002
+!MESSAGE FrameworkEvent ERROR
+!STACK 0
+org.osgi.framework.BundleException: Could not resolve module: org.eclipse.jubula.client.teststyle [1099]
+  Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.ui.rcp; bundle-version="[7.0.0,8.0.0)"
+    -> Bundle-SymbolicName: org.eclipse.jubula.client.ui.rcp; bundle-version="7.0.1.201811271306"; singleton:="true"
+       org.eclipse.jubula.client.ui.rcp [1106]
+         Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.core; bundle-version="[7.0.0,8.0.0)"
+           -> Bundle-SymbolicName: org.eclipse.jubula.client.core; bundle-version="7.0.1.201811271306"; singleton:="true"
+              org.eclipse.jubula.client.core [1094]
+                No resolution report for the bundle.         Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.alm.mylyn.core; bundle-version="[7.0.0,8.0.0)"
+           -> Bundle-SymbolicName: org.eclipse.jubula.client.alm.mylyn.core; bundle-version="7.0.1.201811271306"; singleton:="true"
+              org.eclipse.jubula.client.alm.mylyn.core [1085]
+                Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.core; bundle-version="[7.0.0,8.0.0)"
+                  -> Bundle-SymbolicName: org.eclipse.jubula.client.core; bundle-version="7.0.1.201811271306"; singleton:="true"
+         Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.archive; bundle-version="[7.0.0,8.0.0)"
+           -> Bundle-SymbolicName: org.eclipse.jubula.client.archive; bundle-version="7.0.1.201811271306"; singleton:="true"
+              org.eclipse.jubula.client.archive [1091]
+                Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.core; bundle-version="[7.0.0,8.0.0)"
+                  -> Bundle-SymbolicName: org.eclipse.jubula.client.core; bundle-version="7.0.1.201811271306"; singleton:="true"
+         Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.ui; bundle-version="[7.0.0,8.0.0)"
+           -> Bundle-SymbolicName: org.eclipse.jubula.client.ui; bundle-version="7.0.1.201811271306"; singleton:="true"
+              org.eclipse.jubula.client.ui [1105]
+                Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.core; bundle-version="[7.0.0,8.0.0)"
+                  -> Bundle-SymbolicName: org.eclipse.jubula.client.core; bundle-version="7.0.1.201811271306"; singleton:="true"
+  Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.core; bundle-version="[7.0.0,8.0.0)"
+    -> Bundle-SymbolicName: org.eclipse.jubula.client.core; bundle-version="7.0.1.201811271306"; singleton:="true"
+  Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.ui; bundle-version="[7.0.0,8.0.0)"
+    -> Bundle-SymbolicName: org.eclipse.jubula.client.ui; bundle-version="7.0.1.201811271306"; singleton:="true"
+  Bundle was not resolved because of a uses constraint violation.
+  org.osgi.service.resolver.ResolutionException: Uses constraint violation. Unable to resolve resource org.eclipse.jubula.client.core [osgi.identity; type="osgi.bundle"; version:Version="7.0.1.201811271306"; osgi.identity="org.eclipse.jubula.client.core"; singleton:="true"] because it is exposed to package 'javax.xml.bind' from resources org.eclipse.osgi [osgi.identity; type="osgi.bundle"; version:Version="3.13.100.v20180827-1536"; osgi.identity="org.eclipse.osgi"; singleton:="true"] and javax.xml.bind [osgi.identity; type="osgi.bundle"; version:Version="2.2.0.v201105210648"; osgi.identity="javax.xml.bind"] via two dependency chains.
+
+Chain 1:
+  org.eclipse.jubula.client.core [osgi.identity; type="osgi.bundle"; version:Version="7.0.1.201811271306"; osgi.identity="org.eclipse.jubula.client.core"; singleton:="true"]
+    require: (&(osgi.wiring.bundle=org.eclipse.core.runtime)(&(bundle-version>=3.6.0)(!(bundle-version>=4.0.0))))
+     |
+    provide: osgi.wiring.bundle: org.eclipse.core.runtime
+  org.eclipse.osgi [osgi.identity; type="osgi.bundle"; version:Version="3.13.100.v20180827-1536"; osgi.identity="org.eclipse.osgi"; singleton:="true"]
+
+Chain 2:
+  org.eclipse.jubula.client.core [osgi.identity; type="osgi.bundle"; version:Version="7.0.1.201811271306"; osgi.identity="org.eclipse.jubula.client.core"; singleton:="true"]
+    require: (&(osgi.wiring.bundle=org.dom4j)(&(bundle-version>=1.6.1)(!(bundle-version>=2.0.0))))
+     |
+    provide: osgi.wiring.bundle; bundle-version:Version="1.6.1.v20170815-1500"; osgi.wiring.bundle="org.dom4j"
+  org.dom4j [osgi.identity; type="osgi.bundle"; version:Version="1.6.1.v20170815-1500"; osgi.identity="org.dom4j"]
+    import: (osgi.wiring.package=javax.xml.bind)
+     |
+    export: osgi.wiring.package: javax.xml.bind
+  javax.xml.bind [osgi.identity; type="osgi.bundle"; version:Version="2.2.0.v201105210648"; osgi.identity="javax.xml.bind"]
+	at org.eclipse.osgi.container.Module.start(Module.java:447)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1685)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1664)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.doContainerStartLevel(ModuleContainer.java:1627)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1558)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1)
+	at org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(EventManager.java:233)
+	at org.eclipse.osgi.framework.eventmgr.EventManager$EventThread.run(EventManager.java:343)
+
+!ENTRY org.eclipse.jubula.client.teststyle.impl.standard 4 0 2019-03-16 00:56:22.035
+!MESSAGE FrameworkEvent ERROR
+!STACK 0
+org.osgi.framework.BundleException: Could not resolve module: org.eclipse.jubula.client.teststyle.impl.standard [1100]
+  Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.core; bundle-version="[7.0.0,8.0.0)"
+    -> Bundle-SymbolicName: org.eclipse.jubula.client.core; bundle-version="7.0.1.201811271306"; singleton:="true"
+       org.eclipse.jubula.client.core [1094]
+         No resolution report for the bundle.  Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.ui.rcp; bundle-version="[7.0.0,8.0.0)"
+    -> Bundle-SymbolicName: org.eclipse.jubula.client.ui.rcp; bundle-version="7.0.1.201811271306"; singleton:="true"
+       org.eclipse.jubula.client.ui.rcp [1106]
+         Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.core; bundle-version="[7.0.0,8.0.0)"
+           -> Bundle-SymbolicName: org.eclipse.jubula.client.core; bundle-version="7.0.1.201811271306"; singleton:="true"
+         Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.alm.mylyn.core; bundle-version="[7.0.0,8.0.0)"
+           -> Bundle-SymbolicName: org.eclipse.jubula.client.alm.mylyn.core; bundle-version="7.0.1.201811271306"; singleton:="true"
+              org.eclipse.jubula.client.alm.mylyn.core [1085]
+                Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.core; bundle-version="[7.0.0,8.0.0)"
+                  -> Bundle-SymbolicName: org.eclipse.jubula.client.core; bundle-version="7.0.1.201811271306"; singleton:="true"
+         Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.archive; bundle-version="[7.0.0,8.0.0)"
+           -> Bundle-SymbolicName: org.eclipse.jubula.client.archive; bundle-version="7.0.1.201811271306"; singleton:="true"
+              org.eclipse.jubula.client.archive [1091]
+                Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.core; bundle-version="[7.0.0,8.0.0)"
+                  -> Bundle-SymbolicName: org.eclipse.jubula.client.core; bundle-version="7.0.1.201811271306"; singleton:="true"
+         Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.ui; bundle-version="[7.0.0,8.0.0)"
+           -> Bundle-SymbolicName: org.eclipse.jubula.client.ui; bundle-version="7.0.1.201811271306"; singleton:="true"
+              org.eclipse.jubula.client.ui [1105]
+                Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.core; bundle-version="[7.0.0,8.0.0)"
+                  -> Bundle-SymbolicName: org.eclipse.jubula.client.core; bundle-version="7.0.1.201811271306"; singleton:="true"
+  Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.teststyle; bundle-version="[7.0.0,8.0.0)"
+    -> Bundle-SymbolicName: org.eclipse.jubula.client.teststyle; bundle-version="7.0.1.201811271306"; singleton:="true"
+       org.eclipse.jubula.client.teststyle [1099]
+         Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.ui.rcp; bundle-version="[7.0.0,8.0.0)"
+           -> Bundle-SymbolicName: org.eclipse.jubula.client.ui.rcp; bundle-version="7.0.1.201811271306"; singleton:="true"
+         Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.core; bundle-version="[7.0.0,8.0.0)"
+           -> Bundle-SymbolicName: org.eclipse.jubula.client.core; bundle-version="7.0.1.201811271306"; singleton:="true"
+         Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.ui; bundle-version="[7.0.0,8.0.0)"
+           -> Bundle-SymbolicName: org.eclipse.jubula.client.ui; bundle-version="7.0.1.201811271306"; singleton:="true"
+  Bundle was not resolved because of a uses constraint violation.
+  org.osgi.service.resolver.ResolutionException: Uses constraint violation. Unable to resolve resource org.eclipse.jubula.client.core [osgi.identity; type="osgi.bundle"; version:Version="7.0.1.201811271306"; osgi.identity="org.eclipse.jubula.client.core"; singleton:="true"] because it is exposed to package 'javax.xml.bind' from resources org.eclipse.osgi [osgi.identity; type="osgi.bundle"; version:Version="3.13.100.v20180827-1536"; osgi.identity="org.eclipse.osgi"; singleton:="true"] and javax.xml.bind [osgi.identity; type="osgi.bundle"; version:Version="2.2.0.v201105210648"; osgi.identity="javax.xml.bind"] via two dependency chains.
+
+Chain 1:
+  org.eclipse.jubula.client.core [osgi.identity; type="osgi.bundle"; version:Version="7.0.1.201811271306"; osgi.identity="org.eclipse.jubula.client.core"; singleton:="true"]
+    require: (&(osgi.wiring.bundle=org.eclipse.core.runtime)(&(bundle-version>=3.6.0)(!(bundle-version>=4.0.0))))
+     |
+    provide: osgi.wiring.bundle: org.eclipse.core.runtime
+  org.eclipse.osgi [osgi.identity; type="osgi.bundle"; version:Version="3.13.100.v20180827-1536"; osgi.identity="org.eclipse.osgi"; singleton:="true"]
+
+Chain 2:
+  org.eclipse.jubula.client.core [osgi.identity; type="osgi.bundle"; version:Version="7.0.1.201811271306"; osgi.identity="org.eclipse.jubula.client.core"; singleton:="true"]
+    require: (&(osgi.wiring.bundle=org.dom4j)(&(bundle-version>=1.6.1)(!(bundle-version>=2.0.0))))
+     |
+    provide: osgi.wiring.bundle; bundle-version:Version="1.6.1.v20170815-1500"; osgi.wiring.bundle="org.dom4j"
+  org.dom4j [osgi.identity; type="osgi.bundle"; version:Version="1.6.1.v20170815-1500"; osgi.identity="org.dom4j"]
+    import: (osgi.wiring.package=javax.xml.bind)
+     |
+    export: osgi.wiring.package: javax.xml.bind
+  javax.xml.bind [osgi.identity; type="osgi.bundle"; version:Version="2.2.0.v201105210648"; osgi.identity="javax.xml.bind"]
+	at org.eclipse.osgi.container.Module.start(Module.java:447)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1685)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1664)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.doContainerStartLevel(ModuleContainer.java:1627)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1558)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1)
+	at org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(EventManager.java:233)
+	at org.eclipse.osgi.framework.eventmgr.EventManager$EventThread.run(EventManager.java:343)
+
+!ENTRY org.eclipse.jubula.client.toolkit.ui 4 0 2019-03-16 00:56:22.051
+!MESSAGE FrameworkEvent ERROR
+!STACK 0
+org.osgi.framework.BundleException: Could not resolve module: org.eclipse.jubula.client.toolkit.ui [1101]
+  Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.ui.rcp; bundle-version="[7.0.0,8.0.0)"
+    -> Bundle-SymbolicName: org.eclipse.jubula.client.ui.rcp; bundle-version="7.0.1.201811271306"; singleton:="true"
+       org.eclipse.jubula.client.ui.rcp [1106]
+         Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.core; bundle-version="[7.0.0,8.0.0)"
+           -> Bundle-SymbolicName: org.eclipse.jubula.client.core; bundle-version="7.0.1.201811271306"; singleton:="true"
+              org.eclipse.jubula.client.core [1094]
+                No resolution report for the bundle.         Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.alm.mylyn.core; bundle-version="[7.0.0,8.0.0)"
+           -> Bundle-SymbolicName: org.eclipse.jubula.client.alm.mylyn.core; bundle-version="7.0.1.201811271306"; singleton:="true"
+              org.eclipse.jubula.client.alm.mylyn.core [1085]
+                Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.core; bundle-version="[7.0.0,8.0.0)"
+                  -> Bundle-SymbolicName: org.eclipse.jubula.client.core; bundle-version="7.0.1.201811271306"; singleton:="true"
+         Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.archive; bundle-version="[7.0.0,8.0.0)"
+           -> Bundle-SymbolicName: org.eclipse.jubula.client.archive; bundle-version="7.0.1.201811271306"; singleton:="true"
+              org.eclipse.jubula.client.archive [1091]
+                Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.core; bundle-version="[7.0.0,8.0.0)"
+                  -> Bundle-SymbolicName: org.eclipse.jubula.client.core; bundle-version="7.0.1.201811271306"; singleton:="true"
+         Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.ui; bundle-version="[7.0.0,8.0.0)"
+           -> Bundle-SymbolicName: org.eclipse.jubula.client.ui; bundle-version="7.0.1.201811271306"; singleton:="true"
+              org.eclipse.jubula.client.ui [1105]
+                Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.core; bundle-version="[7.0.0,8.0.0)"
+                  -> Bundle-SymbolicName: org.eclipse.jubula.client.core; bundle-version="7.0.1.201811271306"; singleton:="true"
+  Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.core; bundle-version="[7.0.0,8.0.0)"
+    -> Bundle-SymbolicName: org.eclipse.jubula.client.core; bundle-version="7.0.1.201811271306"; singleton:="true"
+  Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.ui; bundle-version="[7.0.0,8.0.0)"
+    -> Bundle-SymbolicName: org.eclipse.jubula.client.ui; bundle-version="7.0.1.201811271306"; singleton:="true"
+  Bundle was not resolved because of a uses constraint violation.
+  org.osgi.service.resolver.ResolutionException: Uses constraint violation. Unable to resolve resource org.eclipse.jubula.client.core [osgi.identity; type="osgi.bundle"; version:Version="7.0.1.201811271306"; osgi.identity="org.eclipse.jubula.client.core"; singleton:="true"] because it is exposed to package 'javax.xml.bind' from resources org.eclipse.osgi [osgi.identity; type="osgi.bundle"; version:Version="3.13.100.v20180827-1536"; osgi.identity="org.eclipse.osgi"; singleton:="true"] and javax.xml.bind [osgi.identity; type="osgi.bundle"; version:Version="2.2.0.v201105210648"; osgi.identity="javax.xml.bind"] via two dependency chains.
+
+Chain 1:
+  org.eclipse.jubula.client.core [osgi.identity; type="osgi.bundle"; version:Version="7.0.1.201811271306"; osgi.identity="org.eclipse.jubula.client.core"; singleton:="true"]
+    require: (&(osgi.wiring.bundle=org.eclipse.core.runtime)(&(bundle-version>=3.6.0)(!(bundle-version>=4.0.0))))
+     |
+    provide: osgi.wiring.bundle: org.eclipse.core.runtime
+  org.eclipse.osgi [osgi.identity; type="osgi.bundle"; version:Version="3.13.100.v20180827-1536"; osgi.identity="org.eclipse.osgi"; singleton:="true"]
+
+Chain 2:
+  org.eclipse.jubula.client.core [osgi.identity; type="osgi.bundle"; version:Version="7.0.1.201811271306"; osgi.identity="org.eclipse.jubula.client.core"; singleton:="true"]
+    require: (&(osgi.wiring.bundle=org.dom4j)(&(bundle-version>=1.6.1)(!(bundle-version>=2.0.0))))
+     |
+    provide: osgi.wiring.bundle; bundle-version:Version="1.6.1.v20170815-1500"; osgi.wiring.bundle="org.dom4j"
+  org.dom4j [osgi.identity; type="osgi.bundle"; version:Version="1.6.1.v20170815-1500"; osgi.identity="org.dom4j"]
+    import: (osgi.wiring.package=javax.xml.bind)
+     |
+    export: osgi.wiring.package: javax.xml.bind
+  javax.xml.bind [osgi.identity; type="osgi.bundle"; version:Version="2.2.0.v201105210648"; osgi.identity="javax.xml.bind"]
+	at org.eclipse.osgi.container.Module.start(Module.java:447)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1685)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1664)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.doContainerStartLevel(ModuleContainer.java:1627)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1558)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1)
+	at org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(EventManager.java:233)
+	at org.eclipse.osgi.framework.eventmgr.EventManager$EventThread.run(EventManager.java:343)
+
+!ENTRY org.eclipse.jubula.client.ui 4 0 2019-03-16 00:56:22.061
+!MESSAGE FrameworkEvent ERROR
+!STACK 0
+org.osgi.framework.BundleException: Could not resolve module: org.eclipse.jubula.client.ui [1105]
+  Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.core; bundle-version="[7.0.0,8.0.0)"
+    -> Bundle-SymbolicName: org.eclipse.jubula.client.core; bundle-version="7.0.1.201811271306"; singleton:="true"
+       org.eclipse.jubula.client.core [1094]
+         No resolution report for the bundle.  Bundle was not resolved because of a uses constraint violation.
+  org.osgi.service.resolver.ResolutionException: Uses constraint violation. Unable to resolve resource org.eclipse.jubula.client.core [osgi.identity; type="osgi.bundle"; version:Version="7.0.1.201811271306"; osgi.identity="org.eclipse.jubula.client.core"; singleton:="true"] because it is exposed to package 'javax.xml.bind' from resources org.eclipse.osgi [osgi.identity; type="osgi.bundle"; version:Version="3.13.100.v20180827-1536"; osgi.identity="org.eclipse.osgi"; singleton:="true"] and javax.xml.bind [osgi.identity; type="osgi.bundle"; version:Version="2.2.0.v201105210648"; osgi.identity="javax.xml.bind"] via two dependency chains.
+
+Chain 1:
+  org.eclipse.jubula.client.core [osgi.identity; type="osgi.bundle"; version:Version="7.0.1.201811271306"; osgi.identity="org.eclipse.jubula.client.core"; singleton:="true"]
+    require: (&(osgi.wiring.bundle=org.eclipse.core.runtime)(&(bundle-version>=3.6.0)(!(bundle-version>=4.0.0))))
+     |
+    provide: osgi.wiring.bundle: org.eclipse.core.runtime
+  org.eclipse.osgi [osgi.identity; type="osgi.bundle"; version:Version="3.13.100.v20180827-1536"; osgi.identity="org.eclipse.osgi"; singleton:="true"]
+
+Chain 2:
+  org.eclipse.jubula.client.core [osgi.identity; type="osgi.bundle"; version:Version="7.0.1.201811271306"; osgi.identity="org.eclipse.jubula.client.core"; singleton:="true"]
+    require: (&(osgi.wiring.bundle=org.dom4j)(&(bundle-version>=1.6.1)(!(bundle-version>=2.0.0))))
+     |
+    provide: osgi.wiring.bundle; bundle-version:Version="1.6.1.v20170815-1500"; osgi.wiring.bundle="org.dom4j"
+  org.dom4j [osgi.identity; type="osgi.bundle"; version:Version="1.6.1.v20170815-1500"; osgi.identity="org.dom4j"]
+    import: (osgi.wiring.package=javax.xml.bind)
+     |
+    export: osgi.wiring.package: javax.xml.bind
+  javax.xml.bind [osgi.identity; type="osgi.bundle"; version:Version="2.2.0.v201105210648"; osgi.identity="javax.xml.bind"]
+	at org.eclipse.osgi.container.Module.start(Module.java:447)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1685)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1664)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.doContainerStartLevel(ModuleContainer.java:1627)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1558)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1)
+	at org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(EventManager.java:233)
+	at org.eclipse.osgi.framework.eventmgr.EventManager$EventThread.run(EventManager.java:343)
+
+!ENTRY org.eclipse.jubula.client.ui.rcp 4 0 2019-03-16 00:56:22.076
+!MESSAGE FrameworkEvent ERROR
+!STACK 0
+org.osgi.framework.BundleException: Could not resolve module: org.eclipse.jubula.client.ui.rcp [1106]
+  Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.core; bundle-version="[7.0.0,8.0.0)"
+    -> Bundle-SymbolicName: org.eclipse.jubula.client.core; bundle-version="7.0.1.201811271306"; singleton:="true"
+       org.eclipse.jubula.client.core [1094]
+         No resolution report for the bundle.  Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.alm.mylyn.core; bundle-version="[7.0.0,8.0.0)"
+    -> Bundle-SymbolicName: org.eclipse.jubula.client.alm.mylyn.core; bundle-version="7.0.1.201811271306"; singleton:="true"
+       org.eclipse.jubula.client.alm.mylyn.core [1085]
+         Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.core; bundle-version="[7.0.0,8.0.0)"
+           -> Bundle-SymbolicName: org.eclipse.jubula.client.core; bundle-version="7.0.1.201811271306"; singleton:="true"
+  Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.archive; bundle-version="[7.0.0,8.0.0)"
+    -> Bundle-SymbolicName: org.eclipse.jubula.client.archive; bundle-version="7.0.1.201811271306"; singleton:="true"
+       org.eclipse.jubula.client.archive [1091]
+         Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.core; bundle-version="[7.0.0,8.0.0)"
+           -> Bundle-SymbolicName: org.eclipse.jubula.client.core; bundle-version="7.0.1.201811271306"; singleton:="true"
+  Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.ui; bundle-version="[7.0.0,8.0.0)"
+    -> Bundle-SymbolicName: org.eclipse.jubula.client.ui; bundle-version="7.0.1.201811271306"; singleton:="true"
+       org.eclipse.jubula.client.ui [1105]
+         Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.core; bundle-version="[7.0.0,8.0.0)"
+           -> Bundle-SymbolicName: org.eclipse.jubula.client.core; bundle-version="7.0.1.201811271306"; singleton:="true"
+  Bundle was not resolved because of a uses constraint violation.
+  org.osgi.service.resolver.ResolutionException: Uses constraint violation. Unable to resolve resource org.eclipse.jubula.client.ui.rcp [osgi.identity; type="osgi.bundle"; version:Version="7.0.1.201811271306"; osgi.identity="org.eclipse.jubula.client.ui.rcp"; singleton:="true"] because it is exposed to package 'javax.xml.bind' from resources org.eclipse.osgi [osgi.identity; type="osgi.bundle"; version:Version="3.13.100.v20180827-1536"; osgi.identity="org.eclipse.osgi"; singleton:="true"] and javax.xml.bind [osgi.identity; type="osgi.bundle"; version:Version="2.2.0.v201105210648"; osgi.identity="javax.xml.bind"] via two dependency chains.
+
+Chain 1:
+  org.eclipse.jubula.client.ui.rcp [osgi.identity; type="osgi.bundle"; version:Version="7.0.1.201811271306"; osgi.identity="org.eclipse.jubula.client.ui.rcp"; singleton:="true"]
+    require: (&(osgi.wiring.bundle=org.eclipse.core.runtime)(&(bundle-version>=3.6.0)(!(bundle-version>=4.0.0))))
+     |
+    provide: osgi.wiring.bundle: org.eclipse.core.runtime
+  org.eclipse.osgi [osgi.identity; type="osgi.bundle"; version:Version="3.13.100.v20180827-1536"; osgi.identity="org.eclipse.osgi"; singleton:="true"]
+
+Chain 2:
+  org.eclipse.jubula.client.ui.rcp [osgi.identity; type="osgi.bundle"; version:Version="7.0.1.201811271306"; osgi.identity="org.eclipse.jubula.client.ui.rcp"; singleton:="true"]
+    require: (&(osgi.wiring.bundle=org.dom4j)(&(bundle-version>=1.6.1)(!(bundle-version>=2.0.0))))
+     |
+    provide: osgi.wiring.bundle; bundle-version:Version="1.6.1.v20170815-1500"; osgi.wiring.bundle="org.dom4j"
+  org.dom4j [osgi.identity; type="osgi.bundle"; version:Version="1.6.1.v20170815-1500"; osgi.identity="org.dom4j"]
+    import: (osgi.wiring.package=javax.xml.bind)
+     |
+    export: osgi.wiring.package: javax.xml.bind
+  javax.xml.bind [osgi.identity; type="osgi.bundle"; version:Version="2.2.0.v201105210648"; osgi.identity="javax.xml.bind"]
+	at org.eclipse.osgi.container.Module.start(Module.java:447)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1685)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1664)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.doContainerStartLevel(ModuleContainer.java:1627)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1558)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1)
+	at org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(EventManager.java:233)
+	at org.eclipse.osgi.framework.eventmgr.EventManager$EventThread.run(EventManager.java:343)
+
+!ENTRY org.eclipse.jubula.client.wiki.ui 4 0 2019-03-16 00:56:22.092
+!MESSAGE FrameworkEvent ERROR
+!STACK 0
+org.osgi.framework.BundleException: Could not resolve module: org.eclipse.jubula.client.wiki.ui [1107]
+  Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.ui.rcp; bundle-version="[7.0.0,8.0.0)"
+    -> Bundle-SymbolicName: org.eclipse.jubula.client.ui.rcp; bundle-version="7.0.1.201811271306"; singleton:="true"
+       org.eclipse.jubula.client.ui.rcp [1106]
+         Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.core; bundle-version="[7.0.0,8.0.0)"
+           -> Bundle-SymbolicName: org.eclipse.jubula.client.core; bundle-version="7.0.1.201811271306"; singleton:="true"
+              org.eclipse.jubula.client.core [1094]
+                No resolution report for the bundle.         Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.alm.mylyn.core; bundle-version="[7.0.0,8.0.0)"
+           -> Bundle-SymbolicName: org.eclipse.jubula.client.alm.mylyn.core; bundle-version="7.0.1.201811271306"; singleton:="true"
+              org.eclipse.jubula.client.alm.mylyn.core [1085]
+                Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.core; bundle-version="[7.0.0,8.0.0)"
+                  -> Bundle-SymbolicName: org.eclipse.jubula.client.core; bundle-version="7.0.1.201811271306"; singleton:="true"
+         Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.archive; bundle-version="[7.0.0,8.0.0)"
+           -> Bundle-SymbolicName: org.eclipse.jubula.client.archive; bundle-version="7.0.1.201811271306"; singleton:="true"
+              org.eclipse.jubula.client.archive [1091]
+                Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.core; bundle-version="[7.0.0,8.0.0)"
+                  -> Bundle-SymbolicName: org.eclipse.jubula.client.core; bundle-version="7.0.1.201811271306"; singleton:="true"
+         Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.ui; bundle-version="[7.0.0,8.0.0)"
+           -> Bundle-SymbolicName: org.eclipse.jubula.client.ui; bundle-version="7.0.1.201811271306"; singleton:="true"
+              org.eclipse.jubula.client.ui [1105]
+                Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.core; bundle-version="[7.0.0,8.0.0)"
+                  -> Bundle-SymbolicName: org.eclipse.jubula.client.core; bundle-version="7.0.1.201811271306"; singleton:="true"
+  Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.ui; bundle-version="[7.0.0,8.0.0)"
+    -> Bundle-SymbolicName: org.eclipse.jubula.client.ui; bundle-version="7.0.1.201811271306"; singleton:="true"
+  Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.core; bundle-version="[7.0.0,8.0.0)"
+    -> Bundle-SymbolicName: org.eclipse.jubula.client.core; bundle-version="7.0.1.201811271306"; singleton:="true"
+  Bundle was not resolved because of a uses constraint violation.
+  org.osgi.service.resolver.ResolutionException: Uses constraint violation. Unable to resolve resource org.eclipse.jubula.client.core [osgi.identity; type="osgi.bundle"; version:Version="7.0.1.201811271306"; osgi.identity="org.eclipse.jubula.client.core"; singleton:="true"] because it is exposed to package 'javax.xml.bind' from resources org.eclipse.osgi [osgi.identity; type="osgi.bundle"; version:Version="3.13.100.v20180827-1536"; osgi.identity="org.eclipse.osgi"; singleton:="true"] and javax.xml.bind [osgi.identity; type="osgi.bundle"; version:Version="2.2.0.v201105210648"; osgi.identity="javax.xml.bind"] via two dependency chains.
+
+Chain 1:
+  org.eclipse.jubula.client.core [osgi.identity; type="osgi.bundle"; version:Version="7.0.1.201811271306"; osgi.identity="org.eclipse.jubula.client.core"; singleton:="true"]
+    require: (&(osgi.wiring.bundle=org.eclipse.core.runtime)(&(bundle-version>=3.6.0)(!(bundle-version>=4.0.0))))
+     |
+    provide: osgi.wiring.bundle: org.eclipse.core.runtime
+  org.eclipse.osgi [osgi.identity; type="osgi.bundle"; version:Version="3.13.100.v20180827-1536"; osgi.identity="org.eclipse.osgi"; singleton:="true"]
+
+Chain 2:
+  org.eclipse.jubula.client.core [osgi.identity; type="osgi.bundle"; version:Version="7.0.1.201811271306"; osgi.identity="org.eclipse.jubula.client.core"; singleton:="true"]
+    require: (&(osgi.wiring.bundle=org.dom4j)(&(bundle-version>=1.6.1)(!(bundle-version>=2.0.0))))
+     |
+    provide: osgi.wiring.bundle; bundle-version:Version="1.6.1.v20170815-1500"; osgi.wiring.bundle="org.dom4j"
+  org.dom4j [osgi.identity; type="osgi.bundle"; version:Version="1.6.1.v20170815-1500"; osgi.identity="org.dom4j"]
+    import: (osgi.wiring.package=javax.xml.bind)
+     |
+    export: osgi.wiring.package: javax.xml.bind
+  javax.xml.bind [osgi.identity; type="osgi.bundle"; version:Version="2.2.0.v201105210648"; osgi.identity="javax.xml.bind"]
+	at org.eclipse.osgi.container.Module.start(Module.java:447)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1685)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1664)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.doContainerStartLevel(ModuleContainer.java:1627)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1558)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1)
+	at org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(EventManager.java:233)
+	at org.eclipse.osgi.framework.eventmgr.EventManager$EventThread.run(EventManager.java:343)
+
+!ENTRY org.eclipse.jubula.launch 4 0 2019-03-16 00:56:22.109
+!MESSAGE FrameworkEvent ERROR
+!STACK 0
+org.osgi.framework.BundleException: Could not resolve module: org.eclipse.jubula.launch [1109]
+  Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.core; bundle-version="[7.0.0,8.0.0)"
+    -> Bundle-SymbolicName: org.eclipse.jubula.client.core; bundle-version="7.0.1.201811271306"; singleton:="true"
+       org.eclipse.jubula.client.core [1094]
+         No resolution report for the bundle.  Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.autagent; bundle-version="[7.0.0,8.0.0)"
+    -> Bundle-SymbolicName: org.eclipse.jubula.client.autagent; bundle-version="7.0.1.201811271306"; singleton:="true"
+       org.eclipse.jubula.client.autagent [1092]
+         Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.ui; bundle-version="[7.0.0,8.0.0)"
+           -> Bundle-SymbolicName: org.eclipse.jubula.client.ui; bundle-version="7.0.1.201811271306"; singleton:="true"
+              org.eclipse.jubula.client.ui [1105]
+                Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.core; bundle-version="[7.0.0,8.0.0)"
+                  -> Bundle-SymbolicName: org.eclipse.jubula.client.core; bundle-version="7.0.1.201811271306"; singleton:="true"
+         Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.ui.rcp; bundle-version="[7.0.0,8.0.0)"
+           -> Bundle-SymbolicName: org.eclipse.jubula.client.ui.rcp; bundle-version="7.0.1.201811271306"; singleton:="true"
+              org.eclipse.jubula.client.ui.rcp [1106]
+                Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.core; bundle-version="[7.0.0,8.0.0)"
+                  -> Bundle-SymbolicName: org.eclipse.jubula.client.core; bundle-version="7.0.1.201811271306"; singleton:="true"
+                Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.alm.mylyn.core; bundle-version="[7.0.0,8.0.0)"
+                  -> Bundle-SymbolicName: org.eclipse.jubula.client.alm.mylyn.core; bundle-version="7.0.1.201811271306"; singleton:="true"
+                     org.eclipse.jubula.client.alm.mylyn.core [1085]
+                       Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.core; bundle-version="[7.0.0,8.0.0)"
+                         -> Bundle-SymbolicName: org.eclipse.jubula.client.core; bundle-version="7.0.1.201811271306"; singleton:="true"
+                Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.archive; bundle-version="[7.0.0,8.0.0)"
+                  -> Bundle-SymbolicName: org.eclipse.jubula.client.archive; bundle-version="7.0.1.201811271306"; singleton:="true"
+                     org.eclipse.jubula.client.archive [1091]
+                       Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.core; bundle-version="[7.0.0,8.0.0)"
+                         -> Bundle-SymbolicName: org.eclipse.jubula.client.core; bundle-version="7.0.1.201811271306"; singleton:="true"
+                Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.ui; bundle-version="[7.0.0,8.0.0)"
+                  -> Bundle-SymbolicName: org.eclipse.jubula.client.ui; bundle-version="7.0.1.201811271306"; singleton:="true"
+  Bundle was not resolved because of a uses constraint violation.
+  org.osgi.service.resolver.ResolutionException: Uses constraint violation. Unable to resolve resource org.eclipse.jubula.client.core [osgi.identity; type="osgi.bundle"; version:Version="7.0.1.201811271306"; osgi.identity="org.eclipse.jubula.client.core"; singleton:="true"] because it is exposed to package 'javax.xml.bind' from resources org.eclipse.osgi [osgi.identity; type="osgi.bundle"; version:Version="3.13.100.v20180827-1536"; osgi.identity="org.eclipse.osgi"; singleton:="true"] and javax.xml.bind [osgi.identity; type="osgi.bundle"; version:Version="2.2.0.v201105210648"; osgi.identity="javax.xml.bind"] via two dependency chains.
+
+Chain 1:
+  org.eclipse.jubula.client.core [osgi.identity; type="osgi.bundle"; version:Version="7.0.1.201811271306"; osgi.identity="org.eclipse.jubula.client.core"; singleton:="true"]
+    require: (&(osgi.wiring.bundle=org.eclipse.core.runtime)(&(bundle-version>=3.6.0)(!(bundle-version>=4.0.0))))
+     |
+    provide: osgi.wiring.bundle: org.eclipse.core.runtime
+  org.eclipse.osgi [osgi.identity; type="osgi.bundle"; version:Version="3.13.100.v20180827-1536"; osgi.identity="org.eclipse.osgi"; singleton:="true"]
+
+Chain 2:
+  org.eclipse.jubula.client.core [osgi.identity; type="osgi.bundle"; version:Version="7.0.1.201811271306"; osgi.identity="org.eclipse.jubula.client.core"; singleton:="true"]
+    require: (&(osgi.wiring.bundle=org.dom4j)(&(bundle-version>=1.6.1)(!(bundle-version>=2.0.0))))
+     |
+    provide: osgi.wiring.bundle; bundle-version:Version="1.6.1.v20170815-1500"; osgi.wiring.bundle="org.dom4j"
+  org.dom4j [osgi.identity; type="osgi.bundle"; version:Version="1.6.1.v20170815-1500"; osgi.identity="org.dom4j"]
+    import: (osgi.wiring.package=javax.xml.bind)
+     |
+    export: osgi.wiring.package: javax.xml.bind
+  javax.xml.bind [osgi.identity; type="osgi.bundle"; version:Version="2.2.0.v201105210648"; osgi.identity="javax.xml.bind"]
+	at org.eclipse.osgi.container.Module.start(Module.java:447)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1685)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1664)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.doContainerStartLevel(ModuleContainer.java:1627)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1558)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1)
+	at org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(EventManager.java:233)
+	at org.eclipse.osgi.framework.eventmgr.EventManager$EventThread.run(EventManager.java:343)
+
+!ENTRY org.eclipse.jubula.launch.java 4 0 2019-03-16 00:56:22.126
+!MESSAGE FrameworkEvent ERROR
+!STACK 0
+org.osgi.framework.BundleException: Could not resolve module: org.eclipse.jubula.launch.java [1110]
+  Unresolved requirement: Require-Bundle: org.eclipse.jubula.launch; bundle-version="[7.0.0,8.0.0)"
+    -> Bundle-SymbolicName: org.eclipse.jubula.launch; bundle-version="7.0.0.201809111126"; singleton:="true"
+       org.eclipse.jubula.launch [1109]
+         Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.core; bundle-version="[7.0.0,8.0.0)"
+           -> Bundle-SymbolicName: org.eclipse.jubula.client.core; bundle-version="7.0.1.201811271306"; singleton:="true"
+              org.eclipse.jubula.client.core [1094]
+                No resolution report for the bundle.         Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.autagent; bundle-version="[7.0.0,8.0.0)"
+           -> Bundle-SymbolicName: org.eclipse.jubula.client.autagent; bundle-version="7.0.1.201811271306"; singleton:="true"
+              org.eclipse.jubula.client.autagent [1092]
+                Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.ui; bundle-version="[7.0.0,8.0.0)"
+                  -> Bundle-SymbolicName: org.eclipse.jubula.client.ui; bundle-version="7.0.1.201811271306"; singleton:="true"
+                     org.eclipse.jubula.client.ui [1105]
+                       Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.core; bundle-version="[7.0.0,8.0.0)"
+                         -> Bundle-SymbolicName: org.eclipse.jubula.client.core; bundle-version="7.0.1.201811271306"; singleton:="true"
+                Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.ui.rcp; bundle-version="[7.0.0,8.0.0)"
+                  -> Bundle-SymbolicName: org.eclipse.jubula.client.ui.rcp; bundle-version="7.0.1.201811271306"; singleton:="true"
+                     org.eclipse.jubula.client.ui.rcp [1106]
+                       Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.core; bundle-version="[7.0.0,8.0.0)"
+                         -> Bundle-SymbolicName: org.eclipse.jubula.client.core; bundle-version="7.0.1.201811271306"; singleton:="true"
+                       Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.alm.mylyn.core; bundle-version="[7.0.0,8.0.0)"
+                         -> Bundle-SymbolicName: org.eclipse.jubula.client.alm.mylyn.core; bundle-version="7.0.1.201811271306"; singleton:="true"
+                            org.eclipse.jubula.client.alm.mylyn.core [1085]
+                              Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.core; bundle-version="[7.0.0,8.0.0)"
+                                -> Bundle-SymbolicName: org.eclipse.jubula.client.core; bundle-version="7.0.1.201811271306"; singleton:="true"
+                       Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.archive; bundle-version="[7.0.0,8.0.0)"
+                         -> Bundle-SymbolicName: org.eclipse.jubula.client.archive; bundle-version="7.0.1.201811271306"; singleton:="true"
+                            org.eclipse.jubula.client.archive [1091]
+                              Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.core; bundle-version="[7.0.0,8.0.0)"
+                                -> Bundle-SymbolicName: org.eclipse.jubula.client.core; bundle-version="7.0.1.201811271306"; singleton:="true"
+                       Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.ui; bundle-version="[7.0.0,8.0.0)"
+                         -> Bundle-SymbolicName: org.eclipse.jubula.client.ui; bundle-version="7.0.1.201811271306"; singleton:="true"
+  Bundle was not resolved because of a uses constraint violation.
+  org.osgi.service.resolver.ResolutionException: Uses constraint violation. Unable to resolve resource org.eclipse.jubula.client.core [osgi.identity; type="osgi.bundle"; version:Version="7.0.1.201811271306"; osgi.identity="org.eclipse.jubula.client.core"; singleton:="true"] because it is exposed to package 'javax.xml.bind' from resources org.eclipse.osgi [osgi.identity; type="osgi.bundle"; version:Version="3.13.100.v20180827-1536"; osgi.identity="org.eclipse.osgi"; singleton:="true"] and javax.xml.bind [osgi.identity; type="osgi.bundle"; version:Version="2.2.0.v201105210648"; osgi.identity="javax.xml.bind"] via two dependency chains.
+
+Chain 1:
+  org.eclipse.jubula.client.core [osgi.identity; type="osgi.bundle"; version:Version="7.0.1.201811271306"; osgi.identity="org.eclipse.jubula.client.core"; singleton:="true"]
+    require: (&(osgi.wiring.bundle=org.eclipse.core.runtime)(&(bundle-version>=3.6.0)(!(bundle-version>=4.0.0))))
+     |
+    provide: osgi.wiring.bundle: org.eclipse.core.runtime
+  org.eclipse.osgi [osgi.identity; type="osgi.bundle"; version:Version="3.13.100.v20180827-1536"; osgi.identity="org.eclipse.osgi"; singleton:="true"]
+
+Chain 2:
+  org.eclipse.jubula.client.core [osgi.identity; type="osgi.bundle"; version:Version="7.0.1.201811271306"; osgi.identity="org.eclipse.jubula.client.core"; singleton:="true"]
+    require: (&(osgi.wiring.bundle=org.dom4j)(&(bundle-version>=1.6.1)(!(bundle-version>=2.0.0))))
+     |
+    provide: osgi.wiring.bundle; bundle-version:Version="1.6.1.v20170815-1500"; osgi.wiring.bundle="org.dom4j"
+  org.dom4j [osgi.identity; type="osgi.bundle"; version:Version="1.6.1.v20170815-1500"; osgi.identity="org.dom4j"]
+    import: (osgi.wiring.package=javax.xml.bind)
+     |
+    export: osgi.wiring.package: javax.xml.bind
+  javax.xml.bind [osgi.identity; type="osgi.bundle"; version:Version="2.2.0.v201105210648"; osgi.identity="javax.xml.bind"]
+	at org.eclipse.osgi.container.Module.start(Module.java:447)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1685)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1664)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.doContainerStartLevel(ModuleContainer.java:1627)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1558)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1)
+	at org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(EventManager.java:233)
+	at org.eclipse.osgi.framework.eventmgr.EventManager$EventThread.run(EventManager.java:343)
+
+!ENTRY org.eclipse.jubula.launch.java.ui 4 0 2019-03-16 00:56:22.145
+!MESSAGE FrameworkEvent ERROR
+!STACK 0
+org.osgi.framework.BundleException: Could not resolve module: org.eclipse.jubula.launch.java.ui [1111]
+  Unresolved requirement: Require-Bundle: org.eclipse.jubula.launch.ui; bundle-version="[7.0.0,8.0.0)"
+    -> Bundle-SymbolicName: org.eclipse.jubula.launch.ui; bundle-version="7.0.0.201809111126"; singleton:="true"
+       org.eclipse.jubula.launch.ui [1112]
+         Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.ui; bundle-version="[7.0.0,8.0.0)"
+           -> Bundle-SymbolicName: org.eclipse.jubula.client.ui; bundle-version="7.0.1.201811271306"; singleton:="true"
+              org.eclipse.jubula.client.ui [1105]
+                Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.core; bundle-version="[7.0.0,8.0.0)"
+                  -> Bundle-SymbolicName: org.eclipse.jubula.client.core; bundle-version="7.0.1.201811271306"; singleton:="true"
+                     org.eclipse.jubula.client.core [1094]
+                       No resolution report for the bundle.         Unresolved requirement: Require-Bundle: org.eclipse.jubula.launch; bundle-version="[7.0.0,8.0.0)"
+           -> Bundle-SymbolicName: org.eclipse.jubula.launch; bundle-version="7.0.0.201809111126"; singleton:="true"
+              org.eclipse.jubula.launch [1109]
+                Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.core; bundle-version="[7.0.0,8.0.0)"
+                  -> Bundle-SymbolicName: org.eclipse.jubula.client.core; bundle-version="7.0.1.201811271306"; singleton:="true"
+                Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.autagent; bundle-version="[7.0.0,8.0.0)"
+                  -> Bundle-SymbolicName: org.eclipse.jubula.client.autagent; bundle-version="7.0.1.201811271306"; singleton:="true"
+                     org.eclipse.jubula.client.autagent [1092]
+                       Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.ui; bundle-version="[7.0.0,8.0.0)"
+                         -> Bundle-SymbolicName: org.eclipse.jubula.client.ui; bundle-version="7.0.1.201811271306"; singleton:="true"
+                       Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.ui.rcp; bundle-version="[7.0.0,8.0.0)"
+                         -> Bundle-SymbolicName: org.eclipse.jubula.client.ui.rcp; bundle-version="7.0.1.201811271306"; singleton:="true"
+                            org.eclipse.jubula.client.ui.rcp [1106]
+                              Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.core; bundle-version="[7.0.0,8.0.0)"
+                                -> Bundle-SymbolicName: org.eclipse.jubula.client.core; bundle-version="7.0.1.201811271306"; singleton:="true"
+                              Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.alm.mylyn.core; bundle-version="[7.0.0,8.0.0)"
+                                -> Bundle-SymbolicName: org.eclipse.jubula.client.alm.mylyn.core; bundle-version="7.0.1.201811271306"; singleton:="true"
+                                   org.eclipse.jubula.client.alm.mylyn.core [1085]
+                                     Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.core; bundle-version="[7.0.0,8.0.0)"
+                                       -> Bundle-SymbolicName: org.eclipse.jubula.client.core; bundle-version="7.0.1.201811271306"; singleton:="true"
+                              Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.archive; bundle-version="[7.0.0,8.0.0)"
+                                -> Bundle-SymbolicName: org.eclipse.jubula.client.archive; bundle-version="7.0.1.201811271306"; singleton:="true"
+                                   org.eclipse.jubula.client.archive [1091]
+                                     Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.core; bundle-version="[7.0.0,8.0.0)"
+                                       -> Bundle-SymbolicName: org.eclipse.jubula.client.core; bundle-version="7.0.1.201811271306"; singleton:="true"
+                              Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.ui; bundle-version="[7.0.0,8.0.0)"
+                                -> Bundle-SymbolicName: org.eclipse.jubula.client.ui; bundle-version="7.0.1.201811271306"; singleton:="true"
+  Unresolved requirement: Require-Bundle: org.eclipse.jubula.launch.java; bundle-version="[7.0.0,8.0.0)"
+    -> Bundle-SymbolicName: org.eclipse.jubula.launch.java; bundle-version="7.0.0.201809111126"; singleton:="true"
+       org.eclipse.jubula.launch.java [1110]
+         Unresolved requirement: Require-Bundle: org.eclipse.jubula.launch; bundle-version="[7.0.0,8.0.0)"
+           -> Bundle-SymbolicName: org.eclipse.jubula.launch; bundle-version="7.0.0.201809111126"; singleton:="true"
+  Bundle was not resolved because of a uses constraint violation.
+  org.osgi.service.resolver.ResolutionException: Uses constraint violation. Unable to resolve resource org.eclipse.jubula.client.core [osgi.identity; type="osgi.bundle"; version:Version="7.0.1.201811271306"; osgi.identity="org.eclipse.jubula.client.core"; singleton:="true"] because it is exposed to package 'javax.xml.bind' from resources org.eclipse.osgi [osgi.identity; type="osgi.bundle"; version:Version="3.13.100.v20180827-1536"; osgi.identity="org.eclipse.osgi"; singleton:="true"] and javax.xml.bind [osgi.identity; type="osgi.bundle"; version:Version="2.2.0.v201105210648"; osgi.identity="javax.xml.bind"] via two dependency chains.
+
+Chain 1:
+  org.eclipse.jubula.client.core [osgi.identity; type="osgi.bundle"; version:Version="7.0.1.201811271306"; osgi.identity="org.eclipse.jubula.client.core"; singleton:="true"]
+    require: (&(osgi.wiring.bundle=org.eclipse.core.runtime)(&(bundle-version>=3.6.0)(!(bundle-version>=4.0.0))))
+     |
+    provide: osgi.wiring.bundle: org.eclipse.core.runtime
+  org.eclipse.osgi [osgi.identity; type="osgi.bundle"; version:Version="3.13.100.v20180827-1536"; osgi.identity="org.eclipse.osgi"; singleton:="true"]
+
+Chain 2:
+  org.eclipse.jubula.client.core [osgi.identity; type="osgi.bundle"; version:Version="7.0.1.201811271306"; osgi.identity="org.eclipse.jubula.client.core"; singleton:="true"]
+    require: (&(osgi.wiring.bundle=org.dom4j)(&(bundle-version>=1.6.1)(!(bundle-version>=2.0.0))))
+     |
+    provide: osgi.wiring.bundle; bundle-version:Version="1.6.1.v20170815-1500"; osgi.wiring.bundle="org.dom4j"
+  org.dom4j [osgi.identity; type="osgi.bundle"; version:Version="1.6.1.v20170815-1500"; osgi.identity="org.dom4j"]
+    import: (osgi.wiring.package=javax.xml.bind)
+     |
+    export: osgi.wiring.package: javax.xml.bind
+  javax.xml.bind [osgi.identity; type="osgi.bundle"; version:Version="2.2.0.v201105210648"; osgi.identity="javax.xml.bind"]
+	at org.eclipse.osgi.container.Module.start(Module.java:447)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1685)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1664)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.doContainerStartLevel(ModuleContainer.java:1627)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1558)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1)
+	at org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(EventManager.java:233)
+	at org.eclipse.osgi.framework.eventmgr.EventManager$EventThread.run(EventManager.java:343)
+
+!ENTRY org.eclipse.jubula.launch.ui 4 0 2019-03-16 00:56:22.162
+!MESSAGE FrameworkEvent ERROR
+!STACK 0
+org.osgi.framework.BundleException: Could not resolve module: org.eclipse.jubula.launch.ui [1112]
+  Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.ui; bundle-version="[7.0.0,8.0.0)"
+    -> Bundle-SymbolicName: org.eclipse.jubula.client.ui; bundle-version="7.0.1.201811271306"; singleton:="true"
+       org.eclipse.jubula.client.ui [1105]
+         Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.core; bundle-version="[7.0.0,8.0.0)"
+           -> Bundle-SymbolicName: org.eclipse.jubula.client.core; bundle-version="7.0.1.201811271306"; singleton:="true"
+              org.eclipse.jubula.client.core [1094]
+                No resolution report for the bundle.  Unresolved requirement: Require-Bundle: org.eclipse.jubula.launch; bundle-version="[7.0.0,8.0.0)"
+    -> Bundle-SymbolicName: org.eclipse.jubula.launch; bundle-version="7.0.0.201809111126"; singleton:="true"
+       org.eclipse.jubula.launch [1109]
+         Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.core; bundle-version="[7.0.0,8.0.0)"
+           -> Bundle-SymbolicName: org.eclipse.jubula.client.core; bundle-version="7.0.1.201811271306"; singleton:="true"
+         Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.autagent; bundle-version="[7.0.0,8.0.0)"
+           -> Bundle-SymbolicName: org.eclipse.jubula.client.autagent; bundle-version="7.0.1.201811271306"; singleton:="true"
+              org.eclipse.jubula.client.autagent [1092]
+                Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.ui; bundle-version="[7.0.0,8.0.0)"
+                  -> Bundle-SymbolicName: org.eclipse.jubula.client.ui; bundle-version="7.0.1.201811271306"; singleton:="true"
+                Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.ui.rcp; bundle-version="[7.0.0,8.0.0)"
+                  -> Bundle-SymbolicName: org.eclipse.jubula.client.ui.rcp; bundle-version="7.0.1.201811271306"; singleton:="true"
+                     org.eclipse.jubula.client.ui.rcp [1106]
+                       Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.core; bundle-version="[7.0.0,8.0.0)"
+                         -> Bundle-SymbolicName: org.eclipse.jubula.client.core; bundle-version="7.0.1.201811271306"; singleton:="true"
+                       Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.alm.mylyn.core; bundle-version="[7.0.0,8.0.0)"
+                         -> Bundle-SymbolicName: org.eclipse.jubula.client.alm.mylyn.core; bundle-version="7.0.1.201811271306"; singleton:="true"
+                            org.eclipse.jubula.client.alm.mylyn.core [1085]
+                              Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.core; bundle-version="[7.0.0,8.0.0)"
+                                -> Bundle-SymbolicName: org.eclipse.jubula.client.core; bundle-version="7.0.1.201811271306"; singleton:="true"
+                       Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.archive; bundle-version="[7.0.0,8.0.0)"
+                         -> Bundle-SymbolicName: org.eclipse.jubula.client.archive; bundle-version="7.0.1.201811271306"; singleton:="true"
+                            org.eclipse.jubula.client.archive [1091]
+                              Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.core; bundle-version="[7.0.0,8.0.0)"
+                                -> Bundle-SymbolicName: org.eclipse.jubula.client.core; bundle-version="7.0.1.201811271306"; singleton:="true"
+                       Unresolved requirement: Require-Bundle: org.eclipse.jubula.client.ui; bundle-version="[7.0.0,8.0.0)"
+                         -> Bundle-SymbolicName: org.eclipse.jubula.client.ui; bundle-version="7.0.1.201811271306"; singleton:="true"
+  Bundle was not resolved because of a uses constraint violation.
+  org.osgi.service.resolver.ResolutionException: Uses constraint violation. Unable to resolve resource org.eclipse.jubula.client.core [osgi.identity; type="osgi.bundle"; version:Version="7.0.1.201811271306"; osgi.identity="org.eclipse.jubula.client.core"; singleton:="true"] because it is exposed to package 'javax.xml.bind' from resources org.eclipse.osgi [osgi.identity; type="osgi.bundle"; version:Version="3.13.100.v20180827-1536"; osgi.identity="org.eclipse.osgi"; singleton:="true"] and javax.xml.bind [osgi.identity; type="osgi.bundle"; version:Version="2.2.0.v201105210648"; osgi.identity="javax.xml.bind"] via two dependency chains.
+
+Chain 1:
+  org.eclipse.jubula.client.core [osgi.identity; type="osgi.bundle"; version:Version="7.0.1.201811271306"; osgi.identity="org.eclipse.jubula.client.core"; singleton:="true"]
+    require: (&(osgi.wiring.bundle=org.eclipse.core.runtime)(&(bundle-version>=3.6.0)(!(bundle-version>=4.0.0))))
+     |
+    provide: osgi.wiring.bundle: org.eclipse.core.runtime
+  org.eclipse.osgi [osgi.identity; type="osgi.bundle"; version:Version="3.13.100.v20180827-1536"; osgi.identity="org.eclipse.osgi"; singleton:="true"]
+
+Chain 2:
+  org.eclipse.jubula.client.core [osgi.identity; type="osgi.bundle"; version:Version="7.0.1.201811271306"; osgi.identity="org.eclipse.jubula.client.core"; singleton:="true"]
+    require: (&(osgi.wiring.bundle=org.dom4j)(&(bundle-version>=1.6.1)(!(bundle-version>=2.0.0))))
+     |
+    provide: osgi.wiring.bundle; bundle-version:Version="1.6.1.v20170815-1500"; osgi.wiring.bundle="org.dom4j"
+  org.dom4j [osgi.identity; type="osgi.bundle"; version:Version="1.6.1.v20170815-1500"; osgi.identity="org.dom4j"]
+    import: (osgi.wiring.package=javax.xml.bind)
+     |
+    export: osgi.wiring.package: javax.xml.bind
+  javax.xml.bind [osgi.identity; type="osgi.bundle"; version:Version="2.2.0.v201105210648"; osgi.identity="javax.xml.bind"]
+	at org.eclipse.osgi.container.Module.start(Module.java:447)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1685)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1664)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.doContainerStartLevel(ModuleContainer.java:1627)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1558)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1)
+	at org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(EventManager.java:233)
+	at org.eclipse.osgi.framework.eventmgr.EventManager$EventThread.run(EventManager.java:343)
+
+!ENTRY org.eclipse.egit.ui 2 0 2019-03-16 00:57:00.329
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\MGUREKEN'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
