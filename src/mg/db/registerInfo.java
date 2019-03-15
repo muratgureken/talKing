@@ -5,12 +5,12 @@ import java.util.HashMap;
 import java.util.LinkedList;
 
 public class registerInfo {
-	private LinkedList<Integer> idList;
-	private LinkedList<String> usrList;
-	private LinkedList<Integer> socketList;
-	private LinkedList<String> ipList;
-	private LinkedList<Boolean> connStateList;
-        public HashMap<Integer, Socket> socketLib = new HashMap<Integer, Socket>();
+	private static LinkedList<Integer> idList = new LinkedList<Integer>();
+	private static LinkedList<String> usrList = new LinkedList<String>();
+	private static LinkedList<Integer> socketList = new LinkedList<Integer>();
+	private static LinkedList<String> ipList = new LinkedList<String>();
+	private static LinkedList<Boolean> connStateList = new LinkedList<Boolean>();
+	public HashMap<Integer, Socket> socketLib = new HashMap<Integer, Socket>();
 
 	public LinkedList<Integer> getIdList() {
 		return idList;

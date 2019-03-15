@@ -21,7 +21,7 @@ public class userdao extends registerInfo{
 			e.printStackTrace();
 		}
 
-		conn.close();
+		//conn.close();
 	}
 
 	public void bringAllRegisters() throws SQLException
@@ -34,21 +34,21 @@ public class userdao extends registerInfo{
 		System.out.println(sql);
 		ResultSet rs = stmt.executeQuery(sql);
 		System.out.println(sql);
-                
-                getIdList().clear();
-                getUsrList().clear();
-                getConnStateList().clear();
-                getSocketList().clear();
-                
+
+		getIdList().clear();
+		getUsrList().clear();
+		getConnStateList().clear();
+		getSocketList().clear();
+
 		while(rs.next())
 		{
-			getIdList().set(count, rs.getInt("id"));
-			getSocketList().set(count, rs.getInt("socket"));
-			getUsrList().set(count, rs.getString("usrname"));
-			getConnStateList().set(count, rs.getBoolean("connInfo"));
+			System.out.println("id nedir:"+rs.getInt("id")+" count:"+count);
+			getIdList().add(count, rs.getInt("id"));
+			getSocketList().add(count, rs.getInt("socket"));
+			getUsrList().add(count, rs.getString("usrname"));
+			getConnStateList().add(count, rs.getBoolean("conninfo"));
 			count++;
 		}
-
 	}
 
 	public void updateRegister(int id, int socket, boolean connState) throws SQLException
@@ -63,7 +63,7 @@ public class userdao extends registerInfo{
 		stmt.executeUpdate(sql);
 	}
 
-        public void insertRegister(int id, String name, String password) throws SQLException
+	public void insertRegister(int id, String name, String password) throws SQLException
 	{
 		//hem database hem deregisterInfos'daki linkedlist'leri update et.
 		Statement stmt;
@@ -71,7 +71,7 @@ public class userdao extends registerInfo{
 		String sql = "insert into clientinfo(id, usrname, password,connInfo) values ("+id+", '"+name+"','"+password+"',true)";
 		stmt.executeUpdate(sql);
 	}
-        
+
 	public void makeAllRegistersPassive() throws SQLException
 	{
 		int size = getIdList().size();

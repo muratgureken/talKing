@@ -23,70 +23,84 @@ public class messageProtocol {
 
 		return messageT2M;
 	}
-	
+
 	public String registerUserMessage(String name, String password)
 	{
-	    String messageT2M="3";
-            messageT2M = messageT2M + zeroPad(name,50);
-            messageT2M = messageT2M + zeroPad(password,50);
-            return messageT2M;
+		String messageT2M="3";
+		messageT2M = messageT2M + zeroPad(name,50);
+		messageT2M = messageT2M + zeroPad(password,50);
+		return messageT2M;
+	}
+
+	public String updateUserMessage(int sendId, boolean connState)
+	{
+		int state=0;
+		if(connState)
+		{
+			state = 1;
+		}
+
+		String messageT2M="2";
+		String buffer = Integer.toString(sendId);
+		messageT2M = messageT2M + zeroPad(buffer,8);
+		buffer = Integer.toString(state);
+		messageT2M = messageT2M + buffer;
+		return messageT2M;
+	}        
+
+	public String IdQueryUserMessage(String name)
+	{
+		String messageT2M="5";
+		messageT2M = messageT2M + name;
+
+		return messageT2M;
+	}
+
+	public String serverMessage(String name, String message)
+	{
+		String messageT2M="1";
+		messageT2M = messageT2M + zeroPad(name, 50);
+		messageT2M = messageT2M + message;
+		return messageT2M;
+	}
+
+	public String IdResponseMessage(int Id)
+	{
+		String messageT2M="3";
+		String buffer = Integer.toString(Id);
+		messageT2M = messageT2M + zeroPad(buffer,8);
+		return messageT2M;
+	}
+
+	public String allDatabaseMessage(LinkedList<Integer> ids, LinkedList<String> names, LinkedList<Boolean> connStates)
+	{
+		String messageT2M="2";
+		int count = ids.size();
+		messageT2M = messageT2M + zeroPad(Integer.toString(count),8);
+		int connS;
+		for(int i=0;i<count;i++)
+		{
+			connS= 0;
+			messageT2M = messageT2M + zeroPad(Integer.toString(ids.get(i)),8);
+			messageT2M = messageT2M + zeroPad(names.get(i),50);
+			if(connStates.get(i))
+			{
+				connS= 1;
+			}
+			messageT2M = messageT2M + Integer.toString(connS);              
+		}
+		return messageT2M;
+	}
+
+	public String updateRequest(int id)
+	{
+		String messageT2M="4";
+		String buffer = Integer.toString(id);
+		messageT2M = messageT2M + zeroPad(buffer,8);
+
+		return messageT2M;
 	}
 	
-        public String updateUserMessage(int sendId, boolean connState)
-        {
-            int state=0;
-            if(connState)
-            {
-                state = 1;
-            }
-            
-            String messageT2M="2";
-            String buffer = Integer.toString(sendId);
-            messageT2M = messageT2M + zeroPad(buffer,8);
-            buffer = Integer.toString(state);
-            messageT2M = messageT2M + buffer;
-            return messageT2M;
-        }        
-          
-        public String IdQueryUserMessage(String name)
-        {
-            String messageT2M="4";
-            messageT2M = messageT2M + name;
-            
-            return messageT2M;
-        }
-        
-        public String serverMessage(String name, String message)
-        {
-            String messageT2M="1";
-            messageT2M = messageT2M + zeroPad(name, 50);
-            messageT2M = messageT2M + message;
-            return messageT2M;
-        }
-        
-        public String IdResponseMessage(int Id)
-        {
-            String messageT2M="3";
-            String buffer = Integer.toString(Id);
-            messageT2M = messageT2M + zeroPad(buffer,8);
-            return messageT2M;
-        }
-        
-        public String allDatabaseMessage(int count, LinkedList<String> dbList)
-        {
-           String messageT2M="2";
-           messageT2M = messageT2M + Integer.toString(count);
-           
-           for(int i=0;i<count;i++)
-           {
-               messageT2M = messageT2M + zeroPad(dbList.get(i*3),8);
-               messageT2M = messageT2M + zeroPad(dbList.get(i*3+1),50);
-               messageT2M = messageT2M + dbList.get(i*3+2);              
-           }
-           
-           return messageT2M;
-        }
-                
 	private String zeroPad(String input, int padding)
 	{
 		String padded="";

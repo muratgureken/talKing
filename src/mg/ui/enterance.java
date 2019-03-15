@@ -1,7 +1,161 @@
 package mg.ui;
 
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+
+import mg.com.client;
+
+import javax.swing.JButton;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import java.awt.event.ActionListener;
+import java.sql.SQLException;
+import java.awt.event.ActionEvent;
+import javax.swing.JTextArea;
 
 public class enterance extends JFrame{
+	private JTextField txtUserName;
+	private JTextField txtIp;
+	private JTextField txtPort;
+	private JTable table;
+	JLabel lblUserName;
+	JLabel lblIp;
+	JLabel lblPort;
+	JButton btnConnect;
+	JScrollPane scrollPane;
+	private JButton btnUpdate;
+	JTextArea txtMessageRead;
+	JTextArea txtMessageSend;
+	JButton btnSend;
 
+	public enterance() {
+		setEnabled(false);
+		getContentPane().setLayout(null);
+
+		client clt = new client();
+		String[][] data = null;
+		String[] columnNames = {"Id","User","State"};
+		data = new String[10][3];
+
+		lblUserName = new JLabel("User Name");
+		lblUserName.setBounds(27, 24, 71, 14);
+		getContentPane().add(lblUserName);
+
+		lblIp = new JLabel("IP");
+		lblIp.setBounds(27, 50, 46, 14);
+		getContentPane().add(lblIp);
+
+		lblPort = new JLabel("Port");
+		lblPort.setBounds(27, 75, 46, 14);
+		getContentPane().add(lblPort);
+
+		txtUserName = new JTextField();
+		txtUserName.setBounds(108, 21, 86, 20);
+		getContentPane().add(txtUserName);
+		txtUserName.setColumns(10);
+
+		txtIp = new JTextField();
+		txtIp.setBounds(108, 47, 86, 20);
+		getContentPane().add(txtIp);
+		txtIp.setColumns(10);
+
+		txtPort = new JTextField();
+		txtPort.setBounds(108, 72, 86, 20);
+		getContentPane().add(txtPort);
+		txtPort.setColumns(10);
+
+		//listen to the message of another client
+		Thread listenClient = new Thread()
+		{
+			public void run()
+			{	
+				String input="";
+				for(;;)
+				{
+					if(clt.justMessageReceived)
+					{
+						input = "["+clt.otherUserName+"]   "+clt.messageIn;
+						txtMessageRead.setText(input);
+						clt.justMessageReceived=false;				
+					}
+				}
+			}
+		};
+
+		btnConnect = new JButton("Connect");
+		btnConnect.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				clt.clientConnect(txtIp.getText(), Integer.parseInt(txtPort.getText()));
+				clt.userName = txtUserName.getText();
+				clt.sendRegister();
+				//gelecek: clt.userId;
+				btnUpdate.setEnabled(true);
+				btnConnect.setEnabled(false);
+			}
+		});
+		btnConnect.setBounds(105, 109, 89, 23);
+		getContentPane().add(btnConnect);
+
+		scrollPane = new JScrollPane();
+		scrollPane.setBounds(251, 23, 211, 148);
+		getContentPane().add(scrollPane);
+
+		table = new JTable(data,columnNames);
+		table.setEnabled(false);
+		table.setColumnSelectionAllowed(true);
+		table.setRowSelectionAllowed(true);
+		scrollPane.setColumnHeaderView(table);
+
+		btnUpdate = new JButton("Update");
+		btnUpdate.setEnabled(false);
+		btnUpdate.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				clt.sendUpdate();
+				for(int i=0;i<clt.ids.size();i++)
+				{
+					table.setValueAt(clt.ids.get(i), i, 0);
+					table.setValueAt(clt.names.get(i), i, 1);
+					table.setValueAt(clt.conState.get(i), i, 2);
+				}
+				btnSend.setEnabled(true);
+			}
+		});
+		btnUpdate.setBounds(105, 143, 89, 23);
+		getContentPane().add(btnUpdate);
+
+		txtMessageRead = new JTextArea();
+		txtMessageRead.setEditable(false);
+		txtMessageRead.setBounds(27, 195, 434, 132);
+		getContentPane().add(txtMessageRead);
+
+		txtMessageSend = new JTextArea();
+		txtMessageSend.setBounds(27, 339, 301, 45);
+		getContentPane().add(txtMessageSend);
+
+		btnSend = new JButton("Send");
+		btnSend.setEnabled(false);
+		btnSend.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				int[] rows = new int[table.getRowCount()];
+				String str;
+				rows = table.getSelectedRows();
+				//sendIds, userId, messageIn
+				for(int i=0; i<rows.length; i++)
+				{
+					str = ""+table.getValueAt(rows[i], 0);
+					int idvalue = Integer.parseInt(str);
+					clt.sendIds.set(i, idvalue);
+					clt.messageIn = txtMessageSend.getText();
+				}
+				clt.sendUserMessage();
+				
+				String input = "["+clt.userId+"]   "+clt.messageIn;
+				txtMessageRead.setText(input);
+
+			}
+		});
+		btnSend.setBounds(355, 349, 89, 23);
+		getContentPane().add(btnSend);
+	}
 }
