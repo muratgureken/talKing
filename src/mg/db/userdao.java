@@ -9,7 +9,7 @@ import java.sql.Statement;
 public class userdao extends registerInfo{
 	private static String url="jdbc:postgresql://127.0.0.1:5432/talktome";
 	private static String username="postgres";
-	private static String password="sifre123";
+	private static String password="root";
 	private Connection conn;
 
 	public userdao() throws SQLException{
@@ -30,7 +30,7 @@ public class userdao extends registerInfo{
 		int count=0;
 		Statement stmt;
 		stmt = conn.createStatement();
-		String sql = "select id, usrname, connInfo, socket from clientinfo";
+		String sql = "select id, usrname, conninfo, socket from clientinfo";
 		System.out.println(sql);
 		ResultSet rs = stmt.executeQuery(sql);
 		System.out.println(sql);
@@ -59,7 +59,7 @@ public class userdao extends registerInfo{
 		getConnStateList().set(index, connState);
 		Statement stmt;
 		stmt = conn.createStatement();
-		String sql = "update clientinfo set socket="+socket+", connInfo="+connState+" where id="+id;
+		String sql = "update clientinfo set socket="+socket+", conninfo="+connState+" where id="+id;
 		stmt.executeUpdate(sql);
 	}
 
@@ -68,7 +68,7 @@ public class userdao extends registerInfo{
 		//hem database hem deregisterInfos'daki linkedlist'leri update et.
 		Statement stmt;
 		stmt = conn.createStatement();
-		String sql = "insert into clientinfo(id, usrname, password,connInfo) values ("+id+", '"+name+"','"+password+"',true)";
+		String sql = "insert into clientinfo(id, usrname, password,conninfo) values ("+id+", '"+name+"','"+password+"',true)";
 		stmt.executeUpdate(sql);
 	}
 
@@ -83,7 +83,7 @@ public class userdao extends registerInfo{
 
 		Statement stmt;
 		stmt = conn.createStatement();
-		String sql = "update clientinfo set connInfo=false";
+		String sql = "update clientinfo set conninfo=false";
 		stmt.executeUpdate(sql);
 	}
 }

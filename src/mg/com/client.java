@@ -33,7 +33,7 @@ public class client{
 
 	public void clientConnect(String address, int port) 
 	{
-		//port = 5000;
+		//port = 4500;
 		// establish a connection 
 		try
 		{ 

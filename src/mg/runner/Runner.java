@@ -11,7 +11,7 @@ public class Runner {
 		new enterance().setVisible(true);
 		new enterance().setVisible(true);
 		try {
-			new server(5000);
+			new server(5100);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

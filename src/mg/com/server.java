@@ -13,15 +13,15 @@ import mg.db.registerInfo;
 import mg.db.userdao;
 
 public class server extends registerInfo{
-	private static String url="jdbc:postgresql://127.0.0.1:5432/talktome";
+	/*private static String url="jdbc:postgresql://127.0.0.1:5432/talktome";
 	private static String username="postgres";
-	private static String password="sifre123";
+	private static String password="sifre123";*/
 	private Connection conn;
 	private Socket[]  socket = new Socket[1000]; 
 	private ServerSocket    server   = null; 
 	private DataInputStream in       =  null; 
 	private DataOutputStream out     = null; 
-	private int maxThreadNumber=10, socketCounter=0;
+	private int maxThreadNumber=100, socketCounter=0;
 	private Thread[] threads = new Thread[maxThreadNumber];
 	private boolean[] states = new boolean[maxThreadNumber];     
 	private int maxIdValue=0;
@@ -34,17 +34,24 @@ public class server extends registerInfo{
 		userdao dao = new userdao();
 		messageProtocol msgp = new messageProtocol();
 
-		try {
+		/*try {
 			Class.forName("org.postgresql.Driver");
-			conn = DriverManager.getConnection(url, username, password); //try/catch'e gerek yok, metot throwable yapildi.
+			conn = DriverManager.getConnection(url, username, password); 
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}*/
 
 		//conn.close();
 		dao.bringAllRegisters();
 		dao.makeAllRegistersPassive();
+
+		try {
+			server = new ServerSocket(port);
+			server.setSoTimeout(100000);
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} 
 
 		for(int i=0; i<maxThreadNumber; i++)
 		{
@@ -56,8 +63,6 @@ public class server extends registerInfo{
 			// starts server and waits for a connection 
 			try
 			{ 
-				server = new ServerSocket(port); 
-				server.setSoTimeout(100000);
 				System.out.println("Server started"); 
 
 				System.out.println("Waiting for a client ..."); 

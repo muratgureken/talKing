@@ -68,7 +68,7 @@ public class enterance extends JFrame{
 		txtPort.setColumns(10);
 
 		//listen to the message of another client
-		if(false)
+		if(true)
 		{
 			Thread listenClient = new Thread()
 			{
