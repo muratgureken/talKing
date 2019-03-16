@@ -33,6 +33,8 @@ public class client{
 
 	public void clientConnect(String address, int port) 
 	{
+		int nameSize, messageOfset;
+		
 		//port = 4500;
 		// establish a connection 
 		try
@@ -72,20 +74,24 @@ public class client{
 				switch(messageId)
 				{
 				case 1:
-					otherUserName = line.substring(1,51);
-					messageIn = line.substring(51);
+					nameSize = Integer.parseInt(line.substring(1,9));
+					otherUserName = line.substring(9,9+nameSize);
+					messageIn = line.substring(9+nameSize);
 					justMessageReceived = true;
 					break;
 				case 2:
+					messageOfset = 0;
 					ids.clear();
 					names.clear();
 					conState.clear();
 					dbSize = Integer.parseInt(line.substring(1,9));
 					for(int i=0;i<dbSize;i++)
 					{
-						ids.set(i, Integer.parseInt(line.substring(9+59*i,17+59*i)));
-						names.set(i, line.substring(17+59*i,67+59*i));
-						conState.set(i, Integer.parseInt(line.substring(67+59*i,68+59*i)));
+						ids.set(i, Integer.parseInt(line.substring(9+messageOfset,17+messageOfset)));
+						nameSize = Integer.parseInt(line.substring(17+messageOfset,25+messageOfset));
+						names.set(i, line.substring(25+messageOfset,25+nameSize+messageOfset));
+						conState.set(i, Integer.parseInt(line.substring(25+nameSize+messageOfset,25+nameSize+messageOfset+1)));
+						messageOfset = 25+nameSize+messageOfset+1;
 					}
 
 					break;

@@ -81,7 +81,7 @@ public class server extends registerInfo{
 					{
 						private int socketLokalInd = socketCounter-1;
 						private int grupNo;
-						private int receiveId;
+						private int receiveId, messageSize;
 						private String messageIn;	
 						private LinkedList<Integer> sendIds = new LinkedList<Integer>();
 						public void run()
@@ -149,8 +149,9 @@ public class server extends registerInfo{
 											//register user to database
 											maxId();
 											maxIdValue++;
-											usrname = line.substring(1+51);
-											usrpassword = line.substring(51+101);
+											messageSize = Integer.parseInt(line.substring(1,9));
+											usrname = line.substring(9,9+messageSize);
+											usrpassword = line.substring(9+messageSize);
 
 											try {
 												dao.insertRegister(maxIdValue, usrname, usrpassword);

@@ -27,8 +27,8 @@ public class messageProtocol {
 	public String registerUserMessage(String name, String password)
 	{
 		String messageT2M="3";
-		messageT2M = messageT2M + zeroPad(name,50);
-		messageT2M = messageT2M + zeroPad(password,50);
+		messageT2M = messageT2M + stringFormat(name);
+		messageT2M = messageT2M + password;
 		return messageT2M;
 	}
 
@@ -59,7 +59,7 @@ public class messageProtocol {
 	public String serverMessage(String name, String message)
 	{
 		String messageT2M="1";
-		messageT2M = messageT2M + zeroPad(name, 50);
+		messageT2M = messageT2M + stringFormat(name);
 		messageT2M = messageT2M + message;
 		return messageT2M;
 	}
@@ -82,7 +82,7 @@ public class messageProtocol {
 		{
 			connS= 0;
 			messageT2M = messageT2M + zeroPad(Integer.toString(ids.get(i)),8);
-			messageT2M = messageT2M + zeroPad(names.get(i),50);
+			messageT2M = messageT2M + stringFormat(names.get(i));
 			if(connStates.get(i))
 			{
 				connS= 1;
@@ -108,6 +108,18 @@ public class messageProtocol {
 		messageT2M = messageT2M + zeroPad(buffer,8);
 
 		return messageT2M;
+	}
+	
+	private String stringFormat(String input)
+	{
+		String str, str2;
+		
+		str2 = Integer.toString(input.length());
+		str2 = zeroPad(str2, 8);
+		str = str2;
+		str = str + input;
+		
+		return str;
 	}
 	
 	private String zeroPad(String input, int padding)
