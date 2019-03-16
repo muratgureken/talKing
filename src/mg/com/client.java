@@ -44,7 +44,8 @@ public class client{
 			input = new DataInputStream(
 					new BufferedInputStream(socket.getInputStream()));  
 			// sends output to the socket 
-			out = new DataOutputStream(socket.getOutputStream()); 
+			OutputStream outToServer = socket.getOutputStream();
+			out = new DataOutputStream(outToServer);
 		} 
 		catch(UnknownHostException u) 
 		{ 

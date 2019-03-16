@@ -57,6 +57,7 @@ public class server extends registerInfo{
 			try
 			{ 
 				server = new ServerSocket(port); 
+				server.setSoTimeout(100000);
 				System.out.println("Server started"); 
 
 				System.out.println("Waiting for a client ..."); 
@@ -117,6 +118,7 @@ public class server extends registerInfo{
 												messageTcp = msgp.serverMessage(getUsrList().get(index), messageToSend);
 												out = new DataOutputStream(socketLokal.getOutputStream()); 
 												out.writeUTF(messageTcp);
+												out.close();
 											}
 											break;
 										case 2:
@@ -136,6 +138,7 @@ public class server extends registerInfo{
 											messageTcp = msgp.allDatabaseMessage(getIdList(), getUsrList(), getConnStateList());
 											out = new DataOutputStream(socket[socketLokalInd].getOutputStream()); 
 											out.writeUTF(messageTcp);
+											out.close();
 											break;
 										case 3:
 											//register user to database
@@ -165,11 +168,13 @@ public class server extends registerInfo{
 											messageTcp = msgp.IdResponseMessage(maxIdValue);
 											out = new DataOutputStream(socket[socketLokalInd].getOutputStream()); 
 											out.writeUTF(messageTcp);
+											out.close();
 											break;
 										case 4:
 											messageTcp = msgp.allDatabaseMessage(getIdList(), getUsrList(), getConnStateList());
 											out = new DataOutputStream(socket[socketLokalInd].getOutputStream()); 
 											out.writeUTF(messageTcp);
+											out.close();
 											break;
 										case 5:
 											senderId  = Integer.parseInt(line.substring(1,9));
