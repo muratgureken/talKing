@@ -57,12 +57,12 @@ public class enterance extends JFrame{
 		getContentPane().add(txtUserName);
 		txtUserName.setColumns(10);
 
-		txtIp = new JTextField();
+		txtIp = new JTextField("192.168.1.36");
 		txtIp.setBounds(108, 47, 86, 20);
 		getContentPane().add(txtIp);
 		txtIp.setColumns(10);
 
-		txtPort = new JTextField();
+		txtPort = new JTextField("5100");
 		txtPort.setBounds(108, 72, 86, 20);
 		getContentPane().add(txtPort);
 		txtPort.setColumns(10);
@@ -118,6 +118,7 @@ public class enterance extends JFrame{
 		btnUpdate.setEnabled(false);
 		btnUpdate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				clt.userConnState = true;
 				clt.sendUpdate();
 				for(int i=0;i<clt.ids.size();i++)
 				{

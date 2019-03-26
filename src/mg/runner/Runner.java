@@ -8,14 +8,13 @@ import mg.ui.enterance;
 public class Runner {
 
 	public static void main(String[] args) {
-		new enterance().setVisible(true);
-		new enterance().setVisible(true);
 		try {
 			new server(5100);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
+		/*new enterance().setVisible(true);
+		new enterance().setVisible(true);*/
 	}
 
 }

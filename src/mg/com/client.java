@@ -33,8 +33,6 @@ public class client{
 
 	public void clientConnect(String address, int port) 
 	{
-		int nameSize, messageOfset;
-		
 		//port = 4500;
 		// establish a connection 
 		try
@@ -61,54 +59,74 @@ public class client{
 		// string to read message from input 
 
 		// keep reading until "Over" is input 
-		while (keepTalking) 
-		{ 
-			String line = ""; 
-			try
-			{ 
-				line = input.readUTF(); 
-				justMessageReceived = false;
-				messageId = Integer.parseInt(line.substring(0,1));
-				out.writeUTF(line); 
-
-				switch(messageId)
+		Thread talKingTh = new Thread()
+		{
+			int nameSize, messageOfset;
+			
+			public void run()
+			{								
+				for(;;)
 				{
-				case 1:
-					nameSize = Integer.parseInt(line.substring(1,9));
-					otherUserName = line.substring(9,9+nameSize);
-					messageIn = line.substring(9+nameSize);
-					justMessageReceived = true;
-					break;
-				case 2:
-					messageOfset = 0;
-					ids.clear();
-					names.clear();
-					conState.clear();
-					dbSize = Integer.parseInt(line.substring(1,9));
-					for(int i=0;i<dbSize;i++)
+					if(keepTalking)
 					{
-						ids.set(i, Integer.parseInt(line.substring(9+messageOfset,17+messageOfset)));
-						nameSize = Integer.parseInt(line.substring(17+messageOfset,25+messageOfset));
-						names.set(i, line.substring(25+messageOfset,25+nameSize+messageOfset));
-						conState.set(i, Integer.parseInt(line.substring(25+nameSize+messageOfset,25+nameSize+messageOfset+1)));
-						messageOfset = 25+nameSize+messageOfset+1;
-					}
+						String line = ""; 
+						System.out.println("client mesaj bekler");
+						try {
+							line = input.readUTF();
+							System.out.println("client mesaj bekler-2");
+							justMessageReceived = false;
+							messageId = Integer.parseInt(line.substring(0,1));
+							//NEDEN VAR?
+							//out.writeUTF(line); 
+							
+							switch(messageId)
+							{
+							case 1:
+								nameSize = Integer.parseInt(line.substring(1,9));
+								otherUserName = line.substring(9,9+nameSize);
+								messageIn = line.substring(9+nameSize);
+								justMessageReceived = true;
+								break;
+							case 2:
+								messageOfset = 0;
+								ids.clear();
+								names.clear();
+								conState.clear();
+								dbSize = Integer.parseInt(line.substring(1,9));
+								System.out.println("client 2 nolu mesaj:"+line+" dbsize:"+dbSize);
+								System.out.println("mesaj ofset1: "+messageOfset+" mesaj: "+line.substring(9+messageOfset,17+messageOfset)+
+										" "+line.substring(17+messageOfset,25+messageOfset));
 
-					break;
-				case 3:
-					userId = Integer.parseInt(line.substring(1,9));
-					break;
-				}
+								for(int i=0;i<dbSize;i++)
+								{
+									ids.set(i, Integer.parseInt(line.substring(9+messageOfset,17+messageOfset)));
+									nameSize = Integer.parseInt(line.substring(17+messageOfset,25+messageOfset));
+									names.set(i, line.substring(25+messageOfset,25+nameSize+messageOfset));
+									System.out.println("mesaj ofset: "+messageOfset+" mesaj: "+line.substring(9+messageOfset,17+messageOfset)+
+											" "+line.substring(17+messageOfset,25+messageOfset)+" "+line.substring(25+messageOfset,25+nameSize+messageOfset)+
+											" "+line.substring(25+nameSize+messageOfset,25+nameSize+messageOfset+1));
+									conState.set(i, Integer.parseInt(line.substring(25+nameSize+messageOfset,25+nameSize+messageOfset+1)));
+									messageOfset = 17+nameSize+messageOfset+1;
+								}
 
-			} 
-			catch(IOException i) 
-			{ 
-				System.out.println(i); 
-			} 
-		} 
-
-	}
+								break;
+							case 3:
+								userId = Integer.parseInt(line.substring(1,9));
+								break;
+							}
+						} 
 	
+						catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						} 
+					}
+				}
+			}
+		};
+		talKingTh.start();
+	}
+
 	public void sendUserMessage()
 	{
 		tcpMessage = msgp.clientMessage(sendIds, userId, messageIn);
@@ -152,7 +170,7 @@ public class client{
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void clientStopTalking()
 	{
 		keepTalking = false;

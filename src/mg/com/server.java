@@ -76,7 +76,7 @@ public class server extends registerInfo{
 				if(threadIndex!=-1)
 				{
 					states[threadIndex] = true;
-					
+
 					threads[threadIndex] = new Thread()
 					{
 						private int socketLokalInd = socketCounter-1;
@@ -84,19 +84,26 @@ public class server extends registerInfo{
 						private int receiveId, messageSize;
 						private String messageIn;	
 						private LinkedList<Integer> sendIds = new LinkedList<Integer>();
+
+						String line = "";   
+
 						public void run()
 						{								
+							try {
+								in = new DataInputStream(
+										new BufferedInputStream(socket[socketLokalInd].getInputStream()));
+							} catch (IOException e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							}                                                                              
 							for(;;)
 							{
 								if(states[threadIndex])
 								{
 									try
-									{
+									{						
 										// takes input from the client socket
-										in = new DataInputStream(
-												new BufferedInputStream(socket[socketLokalInd].getInputStream()));                                                                              
-
-										String line = "";   
+										line ="";
 										//reads message
 										line = in.readUTF();
 										//read message id
@@ -123,12 +130,13 @@ public class server extends registerInfo{
 												messageTcp = msgp.serverMessage(getUsrList().get(index), messageToSend);
 												out = new DataOutputStream(socketLokal.getOutputStream()); 
 												out.writeUTF(messageTcp);
-												out.close();
+												//out.close();
 											}
 											break;
 										case 2:
+											System.out.println("2 nolu mesaj:"+line);
 											senderId  = Integer.parseInt(line.substring(1,9));
-											connState = Integer.parseInt(line.substring(9,17));
+											connState = Integer.parseInt(line.substring(9,10));
 											if(connState==0)
 											{
 												//kill thread
@@ -139,16 +147,17 @@ public class server extends registerInfo{
 											//update lists
 											int indexlocal = getIdList().indexOf(senderId);
 											getConnStateList().set(indexlocal, states[threadIndex]);
-											
+
 											messageTcp = msgp.allDatabaseMessage(getIdList(), getUsrList(), getConnStateList());
 											out = new DataOutputStream(socket[socketLokalInd].getOutputStream()); 
 											out.writeUTF(messageTcp);
-											out.close();
+											//out.close();
 											break;
 										case 3:
 											//register user to database
 											maxId();
 											maxIdValue++;
+											System.out.println("3 nolu mesaj: boy:"+line.substring(1,9)+", "+Integer.parseInt(line.substring(1,9)));
 											messageSize = Integer.parseInt(line.substring(1,9));
 											usrname = line.substring(9,9+messageSize);
 											usrpassword = line.substring(9+messageSize);
@@ -174,13 +183,13 @@ public class server extends registerInfo{
 											messageTcp = msgp.IdResponseMessage(maxIdValue);
 											out = new DataOutputStream(socket[socketLokalInd].getOutputStream()); 
 											out.writeUTF(messageTcp);
-											out.close();
+											//out.close();
 											break;
 										case 4:
 											messageTcp = msgp.allDatabaseMessage(getIdList(), getUsrList(), getConnStateList());
 											out = new DataOutputStream(socket[socketLokalInd].getOutputStream()); 
 											out.writeUTF(messageTcp);
-											out.close();
+											//out.close();
 											break;
 										case 5:
 											senderId  = Integer.parseInt(line.substring(1,9));
@@ -244,7 +253,7 @@ public class server extends registerInfo{
 	public void closeMessagging(int id) throws SQLException{
 		Socket sckt = socketLibLocal.get(id);
 		int indexThr = threadLib.get(id);
-		
+
 		try {
 			states[indexThr] = false;
 			System.out.println("Closing connection");
