@@ -120,6 +120,7 @@ public class enterance extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				clt.userConnState = true;
 				clt.sendUpdate();
+				System.out.println("tablo boyu : "+clt.ids.size());
 				for(int i=0;i<clt.ids.size();i++)
 				{
 					table.setValueAt(clt.ids.get(i), i, 0);

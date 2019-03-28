@@ -99,14 +99,15 @@ public class client{
 
 								for(int i=0;i<dbSize;i++)
 								{
-									ids.set(i, Integer.parseInt(line.substring(9+messageOfset,17+messageOfset)));
+									System.out.println("adim: "+i);
+									ids.add(Integer.parseInt(line.substring(9+messageOfset,17+messageOfset)));
 									nameSize = Integer.parseInt(line.substring(17+messageOfset,25+messageOfset));
-									names.set(i, line.substring(25+messageOfset,25+nameSize+messageOfset));
+									names.add(line.substring(25+messageOfset,25+nameSize+messageOfset));
 									System.out.println("mesaj ofset: "+messageOfset+" mesaj: "+line.substring(9+messageOfset,17+messageOfset)+
 											" "+line.substring(17+messageOfset,25+messageOfset)+" "+line.substring(25+messageOfset,25+nameSize+messageOfset)+
 											" "+line.substring(25+nameSize+messageOfset,25+nameSize+messageOfset+1));
-									conState.set(i, Integer.parseInt(line.substring(25+nameSize+messageOfset,25+nameSize+messageOfset+1)));
-									messageOfset = 17+nameSize+messageOfset+1;
+									conState.add(Integer.parseInt(line.substring(25+nameSize+messageOfset,25+nameSize+messageOfset+1)));
+									messageOfset = 17+nameSize+messageOfset;
 								}
 
 								break;
@@ -142,6 +143,7 @@ public class client{
 	{
 		tcpMessage = msgp.updateUserMessage(userId, userConnState);
 		try {
+			System.out.println("client update message: "+tcpMessage);
 			out.writeUTF(tcpMessage);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

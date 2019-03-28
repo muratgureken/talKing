@@ -149,6 +149,7 @@ public class server extends registerInfo{
 											getConnStateList().set(indexlocal, states[threadIndex]);
 
 											messageTcp = msgp.allDatabaseMessage(getIdList(), getUsrList(), getConnStateList());
+											System.out.println("server: alldatabase: "+messageTcp);
 											out = new DataOutputStream(socket[socketLokalInd].getOutputStream()); 
 											out.writeUTF(messageTcp);
 											//out.close();
