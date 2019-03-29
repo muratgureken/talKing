@@ -19,6 +19,7 @@ public class client{
 	public LinkedList<Integer> conState = new LinkedList<Integer>();
 	public LinkedList<Integer> sendIds = new LinkedList<Integer>();
 	public int dbSize;
+	public boolean flag=false;
 	messageProtocol msgp;
 	private String tcpMessage;
 	public boolean userConnState;
@@ -88,6 +89,7 @@ public class client{
 								justMessageReceived = true;
 								break;
 							case 2:
+								flag = true;
 								messageOfset = 0;
 								ids.clear();
 								names.clear();
@@ -165,6 +167,7 @@ public class client{
 	public void extiChat()
 	{
 		tcpMessage = msgp.exitChat(userId);
+		System.out.println("exit message : "+tcpMessage);
 		try {
 			out.writeUTF(tcpMessage);
 		} catch (IOException e) {

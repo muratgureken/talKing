@@ -3,6 +3,7 @@ package mg.ui;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
 
 import mg.com.client;
 
@@ -36,9 +37,7 @@ public class enterance extends JFrame{
 		getContentPane().setLayout(null);
 
 		client clt = new client();
-		String[][] data = null;
 		String[] columnNames = {"Id","User","State"};
-		data = new String[10][3];
 
 		lblUserName = new JLabel("User Name");
 		lblUserName.setBounds(27, 24, 71, 14);
@@ -108,26 +107,46 @@ public class enterance extends JFrame{
 		scrollPane.setBounds(251, 23, 211, 148);
 		getContentPane().add(scrollPane);
 
-		table = new JTable(data,columnNames);
+		table = new JTable();
 		table.setEnabled(false);
 		table.setColumnSelectionAllowed(true);
 		table.setRowSelectionAllowed(true);
 		scrollPane.setColumnHeaderView(table);
 
+		Thread listenDataUpdate = new Thread()
+		{
+			public void run()
+			{								
+				for(;;)
+				{
+					if (clt.flag)
+					{
+						System.out.println("flag durum:"+clt.flag);
+						
+						clt.flag = false;
+						System.out.println("tablo boyu : "+clt.ids.size());
+				        String[][] data1 = new String[clt.ids.size()][3];
+
+						for(int i=0;i<clt.ids.size();i++)
+						{
+							data1[i][0] = Integer.toString(clt.ids.get(i));
+							data1[i][1] = clt.names.get(i);
+							data1[i][2] = Integer.toString(clt.conState.get(i));
+						}
+						btnSend.setEnabled(true);
+						table.setModel(new DefaultTableModel(data1, new String[]{"Id","User","State"}));
+					}
+				}
+			}
+		};
+		listenDataUpdate.start();
+		
 		btnUpdate = new JButton("Update");
 		btnUpdate.setEnabled(false);
 		btnUpdate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				clt.userConnState = true;
 				clt.sendUpdate();
-				System.out.println("tablo boyu : "+clt.ids.size());
-				for(int i=0;i<clt.ids.size();i++)
-				{
-					table.setValueAt(clt.ids.get(i), i, 0);
-					table.setValueAt(clt.names.get(i), i, 1);
-					table.setValueAt(clt.conState.get(i), i, 2);
-				}
-				btnSend.setEnabled(true);
 			}
 		});
 		btnUpdate.setBounds(132, 145, 89, 23);
