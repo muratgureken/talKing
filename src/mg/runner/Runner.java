@@ -3,7 +3,6 @@ package mg.runner;
 import java.sql.SQLException;
 
 import mg.com.server;
-import mg.ui.enterance;
 
 public class Runner {
 

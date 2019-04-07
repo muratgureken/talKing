@@ -68,8 +68,8 @@ public class server extends registerInfo{
 				System.out.println("Waiting for a client ..."); 
 
 				socket[socketCounter] = server.accept(); 
+				System.out.println("Client accepted socket id : "+socketCounter+" socket : "+socket[socketCounter]); 
 				socketCounter++;
-				System.out.println("Client accepted"); 
 
 				//her accepten sonra bir thread olustur.
 				int threadIndex = availableThread();
@@ -150,6 +150,7 @@ public class server extends registerInfo{
 
 											messageTcp = msgp.allDatabaseMessage(getIdList(), getUsrList(), getConnStateList());
 											System.out.println("server: alldatabase: "+messageTcp);
+											System.out.println("Client gonder mesajID:2 socket id : "+socketLokalInd+" socket : "+socket[socketLokalInd]); 
 											out = new DataOutputStream(socket[socketLokalInd].getOutputStream()); 
 											out.writeUTF(messageTcp);
 											//out.close();

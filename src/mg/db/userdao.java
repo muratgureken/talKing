@@ -9,7 +9,7 @@ import java.sql.Statement;
 public class userdao extends registerInfo{
 	private static String url="jdbc:postgresql://127.0.0.1:5432/talktome";
 	private static String username="postgres";
-	private static String password="sifre123";
+	private static String password="root";
 	private Connection conn;
 
 	public userdao() throws SQLException{
