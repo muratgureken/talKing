@@ -12,8 +12,7 @@ public class Runner {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		/*new enterance().setVisible(true);
-		new enterance().setVisible(true);*/
+
 	}
 
 }

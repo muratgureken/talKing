@@ -33,7 +33,7 @@ public class server extends registerInfo{
 
 		userdao dao = new userdao();
 		messageProtocol msgp = new messageProtocol();
-
+		
 		/*try {
 			Class.forName("org.postgresql.Driver");
 			conn = DriverManager.getConnection(url, username, password); 
@@ -69,6 +69,7 @@ public class server extends registerInfo{
 
 				socket[socketCounter] = server.accept(); 
 				System.out.println("Client accepted socket id : "+socketCounter+" socket : "+socket[socketCounter]); 
+				getSocketList().add(socket[socketCounter]);
 				socketCounter++;
 
 				//her accepten sonra bir thread olustur.
@@ -117,19 +118,32 @@ public class server extends registerInfo{
 										{
 										case 1:
 											//receive client chat message
+											System.out.println("clienttan 1 nolu mesaj geldi mesaj : "+line);
 											grupCount = Integer.parseInt(line.substring(1,9));                                                                                        
 											senderId  = Integer.parseInt(line.substring(9,17));
+											System.out.println("client 1 nolu mesaj grupcount : "+grupCount+" senderID : "+senderId+" mesajindis : "+(17+grupCount*8));
 											messageToSend = line.substring(17+grupCount*8);
+																						
 											for(int i=0;i<grupCount;i++)    
 											{
 												receiverId = Integer.parseInt(line.substring(17+i*8,17+(i+1)*8));
 												//find receiver socket number
-												socketLokal = socketLib.get(receiverId);
-												//send message
-												int index = getIdList().indexOf(receiverId);
-												messageTcp = msgp.serverMessage(getUsrList().get(index), messageToSend);
-												out = new DataOutputStream(socketLokal.getOutputStream()); 
-												out.writeUTF(messageTcp);
+												socketLokal = socketLibLocal.get(receiverId);
+												if(socketLokal!=null)
+												{
+													System.out.println("clienttan 1 nolu mesaj receiver id : "+receiverId);
+													System.out.println("socketlib : "+socketLibLocal);
+													//send message
+													int index = getIdList().indexOf(receiverId);
+													System.out.println("client soket bilgisi: " +socketLokal+" index : "+index);
+													messageTcp = msgp.serverMessage(getUsrList().get(index), messageToSend);
+													out = new DataOutputStream(socketLokal.getOutputStream()); 
+													out.writeUTF(messageTcp);													
+												}
+												else
+												{
+													System.out.println("the user is not active");
+												}
 												//out.close();
 											}
 											break;
@@ -159,7 +173,7 @@ public class server extends registerInfo{
 											//register user to database
 											maxId();
 											maxIdValue++;
-											System.out.println("3 nolu mesaj: boy:"+line.substring(1,9)+", "+Integer.parseInt(line.substring(1,9)));
+											System.out.println("3 nolu mesaj: boy:"+line.substring(1,9));
 											messageSize = Integer.parseInt(line.substring(1,9));
 											usrname = line.substring(9,9+messageSize);
 											usrpassword = line.substring(9+messageSize);
@@ -171,7 +185,9 @@ public class server extends registerInfo{
 											}
 
 											//update lists
-											getIdList().add(maxIdValue);
+											System.out.println("idtablo boyu neydi? "+getIdList().size());
+											setIdList(maxIdValue);
+											System.out.println("idtablo boyu ne oldu? "+getIdList().size());
 											getUsrList().add(usrname);
 											getConnStateList().add(true);
 
@@ -271,6 +287,7 @@ public class server extends registerInfo{
 	public void maxId()
 	{
 		int value=-1;
+		System.out.println("max search idlist boy : "+getIdList().size());
 		for(int i=0;i<getIdList().size();i++)
 		{
 			value = getIdList().get(i);

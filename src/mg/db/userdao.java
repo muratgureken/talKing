@@ -9,7 +9,7 @@ import java.sql.Statement;
 public class userdao extends registerInfo{
 	private static String url="jdbc:postgresql://127.0.0.1:5432/talktome";
 	private static String username="postgres";
-	private static String password="root";
+	private static String password="sifre123";
 	private Connection conn;
 
 	public userdao() throws SQLException{
@@ -44,7 +44,7 @@ public class userdao extends registerInfo{
 		{
 			System.out.println("id nedir:"+rs.getInt("id")+" count:"+count);
 			getIdList().add(count, rs.getInt("id"));
-			getSocketList().add(count, rs.getInt("socket"));
+			//getSocketList().add(count, rs.getInt("socket"));
 			getUsrList().add(count, rs.getString("usrname"));
 			getConnStateList().add(count, rs.getBoolean("conninfo"));
 			count++;
@@ -55,7 +55,7 @@ public class userdao extends registerInfo{
 	{
 		//hem database hem deregisterInfos'daki linkedlist'leri update et.
 		int index = getIdList().indexOf(id);
-		getSocketList().set(index, socket);
+		//getSocketList().set(index, socket);
 		getConnStateList().set(index, connState);
 		Statement stmt;
 		stmt = conn.createStatement();
