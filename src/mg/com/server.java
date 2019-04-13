@@ -136,6 +136,7 @@ public class server extends registerInfo{
 													//send message
 													int index = getIdList().indexOf(receiverId);
 													System.out.println("client soket bilgisi: " +socketLokal+" index : "+index);
+													System.out.println("tum user list"+getUsrList());
 													messageTcp = msgp.serverMessage(getUsrList().get(index), messageToSend);
 													out = new DataOutputStream(socketLokal.getOutputStream()); 
 													out.writeUTF(messageTcp);													
